@@ -11,11 +11,6 @@ import android.view.ViewGroup;
 
 import helloworld.amsi.ipleiria.cultravel.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EditarRegistoFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class EditarRegistoFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener  {
 
     private SwipeRefreshLayout swipeRefreshLayout;
