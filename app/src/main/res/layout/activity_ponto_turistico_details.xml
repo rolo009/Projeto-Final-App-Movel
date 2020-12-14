@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vistas.PontoTuristicoDetailsFragment">
+    tools:context=".vistas.PontoTuristicoDetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imgLogo"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:src="@drawable/seta_logo" />
@@ -36,8 +36,8 @@
             android:paddingRight="15dp">
 
             <TextView
-                android:id="@+id/textView5"
-                android:layout_width="350dp"
+                android:id="@+id/tv_NomePT"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Castelo de Leiria"
@@ -45,12 +45,21 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnGoogleMaps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/ic_go_google_maps"
+                android:backgroundTint="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnAddFavoritos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/ic_add_favoritos"
                 android:backgroundTint="#FFFFFF" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -60,7 +69,7 @@
             android:paddingTop="15dp">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/ivImgPT"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
                 android:layout_weight="1"
@@ -212,7 +221,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/tv_descricao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

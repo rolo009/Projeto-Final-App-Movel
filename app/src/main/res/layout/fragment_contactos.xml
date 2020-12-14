@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".vistas.ContactosFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/design_sem_nome__6_"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="50dp"
+        android:paddingRight="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/seta_logo" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/contactos"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical"
+            android:paddingTop="40dp">
+
+            <EditText
+                android:id="@+id/etNomeContactos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:ems="10"
+                android:hint="Nome"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:textColorHint="@android:color/background_light"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etEmailContactos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:textColor="#FFFFFF"
+                android:textColorHint="@android:color/background_light" />
+
+            <EditText
+                android:id="@+id/etAssunto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Assunto"
+                android:textColor="#FFFFFF"
+                android:textColorHint="@android:color/background_light" />
+
+            <EditText
+                android:id="@+id/editTextTextMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FFFFFF"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Mensagem"
+                android:inputType="textMultiLine"
+                android:textColor="#FFFFFF"
+                android:textColorHint="@android:color/background_light" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:id="@+id/btnInstagram"
+                        android:layout_width="71dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/instagram_logo" />
+
+                    <Button
+                        android:id="@+id/btnFacebook"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/facebook_logo" />
+
+                    <Button
+                        android:id="@+id/btnTwitter"
+                        android:layout_width="45dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/twitter_logo" />
+
+                    <Space
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -18,7 +18,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imgLogo"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:src="@drawable/seta_logo" />
@@ -29,9 +29,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <ListView
+                android:id="@+id/lvListaFavoritos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>

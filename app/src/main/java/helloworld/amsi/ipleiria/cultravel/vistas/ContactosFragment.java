@@ -10,12 +10,11 @@ import android.view.ViewGroup;
 
 import helloworld.amsi.ipleiria.cultravel.R;
 
-public class PontoTuristicoDetailsFragment extends Fragment {
+public class ContactosFragment extends Fragment {
 
-    public PontoTuristicoDetailsFragment() {
+    public ContactosFragment() {
         // Required empty public constructor
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +24,6 @@ public class PontoTuristicoDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ponto_turistico_details, container, false);
+        return inflater.inflate(R.layout.fragment_contactos, container, false);
     }
 }

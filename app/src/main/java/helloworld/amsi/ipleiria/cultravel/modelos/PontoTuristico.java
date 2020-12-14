@@ -2,15 +2,15 @@ package helloworld.amsi.ipleiria.cultravel.modelos;
 
 public class PontoTuristico {
     private int id;
-    private String nome, anoConstrucao, descricao, foto;
+    private String nome, anoConstrucao, descricao, localidade, foto;
     //Comum a todas as instâncias da classe
-    private static int autoIncrementId = 1;
 
-    public PontoTuristico(String nome, String anoConstrucao, String descricao, String foto) {
-        this.id = autoIncrementId++;
+    public PontoTuristico(int id, String nome, String anoConstrucao, String descricao, String localidade, String foto) {
+        this.id = id;
         this.nome = nome;
         this.anoConstrucao = anoConstrucao;
         this.descricao = descricao;
+        this.localidade = localidade;
         this.foto = foto;
     }
 
@@ -28,6 +28,10 @@ public class PontoTuristico {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    public String getLocalidade() {
+        return localidade;
     }
 
     public String getFoto() {
@@ -49,6 +53,11 @@ public class PontoTuristico {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
+    }
+
 
     public void setFoto(String foto) {
         this.foto = foto;

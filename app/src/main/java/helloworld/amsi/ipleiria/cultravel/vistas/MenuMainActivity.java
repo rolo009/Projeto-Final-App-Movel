@@ -47,6 +47,7 @@ public class MenuMainActivity extends AppCompatActivity{
                         setTitle(item.getTitle());
                         break;
                     case R.id.nav_contactos:
+                        fragment = new ContactosFragment();
                         System.out.println("-->Nav Email");
                         break;
                     case R.id.nav_areaPessoal:
@@ -75,7 +76,7 @@ public class MenuMainActivity extends AppCompatActivity{
 
     private void carregarFragmentoInicial() {
         bottomNavigationView.setSelectedItemId(R.id.nav_home);
-        Fragment fragment = new SearchFragment();
+        Fragment fragment = new ListaPontosTuristicosFragment();
         fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();
         setTitle("HOME");
     }

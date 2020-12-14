@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/design_sem_nome__6_"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_foto perfil"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_marginTop="80dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_foto_perfil" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_NomeUtilizador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:text="Pedro Rolo"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_editarRegisto"
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#EC4C4C"
+                android:text="EDITAR REGISTO"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_apagarConta"
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#EC4C4C"
+                android:text="APAGAR CONTA"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
