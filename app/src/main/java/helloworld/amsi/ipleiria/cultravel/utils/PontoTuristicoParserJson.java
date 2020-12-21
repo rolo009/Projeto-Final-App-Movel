@@ -14,19 +14,19 @@ import helloworld.amsi.ipleiria.cultravel.modelos.PontoTuristico;
 
 public class PontoTuristicoParserJson {
     public static ArrayList<PontoTuristico> parserJsonPontosTuristicos(JSONArray response) {
+
         ArrayList<PontoTuristico> pontosTuristicos = new ArrayList<>();
 
         try {
             for (int i = 0; i < response.length(); i++) {
-                JSONObject livro = (JSONObject) response.get(i);
-                int id = livro.getInt("id");
-                String nome = livro.getString("nome");
-                String anoConstrucao = livro.getString("anoConstrucao");
-                String descricao = livro.getString("descricao");
-                String localidade = livro.getString("localidade");
-                String foto = livro.getString("foto");
+                JSONObject pontoturistico = (JSONObject) response.get(i);
+                int id = pontoturistico.getInt("id_pontoTuristico");
+                String nome = pontoturistico.getString("nome");
+                String localidade = pontoturistico.getString("localidade_idLocalidade");
+                String foto = pontoturistico.getString("foto");
+                int status = pontoturistico.getInt("status");
 
-                PontoTuristico auxPontoTuristico = new PontoTuristico(id, nome, anoConstrucao, descricao, localidade, foto);
+                PontoTuristico auxPontoTuristico = new PontoTuristico(id, nome,null,null, localidade,null,null,null, foto, null, null, status);
                 pontosTuristicos.add(auxPontoTuristico);
             }
         } catch (JSONException e) {
@@ -45,9 +45,16 @@ public class PontoTuristicoParserJson {
             String anoConstrucao = pontoturistico.getString("anoConstrucao");
             String descricao = pontoturistico.getString("descricao");
             String localidade = pontoturistico.getString("localidade");
+            String estiloConstrucao = pontoturistico.getString("estiloConstrucao");
+            String tipoMonumento = pontoturistico.getString("tipoMonumento");
+            String ranking = pontoturistico.getString("tipoMonumento");
             String foto = pontoturistico.getString("foto");
+            String latitude = pontoturistico.getString("latitude");
+            String longitude = pontoturistico.getString("longitude");
+            int status = pontoturistico.getInt("status");
 
-            auxPontoTuristico = new PontoTuristico(id, nome, anoConstrucao, descricao, localidade, foto);
+            auxPontoTuristico = new PontoTuristico(id, nome, anoConstrucao, descricao, localidade, estiloConstrucao, tipoMonumento, ranking, foto, latitude, longitude, status);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -58,7 +65,7 @@ public class PontoTuristicoParserJson {
         String token = null;
         try {
             JSONObject login = new JSONObject(response);
-            if(login.getBoolean("success")){
+            if (login.getBoolean("success")) {
                 token = login.getString("token");
             }
         } catch (JSONException e) {

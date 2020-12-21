@@ -1,17 +1,47 @@
 package helloworld.amsi.ipleiria.cultravel.modelos;
 
 public class PontoTuristico {
-    private int id;
-    private String nome, anoConstrucao, descricao, localidade, foto;
+    private int id,status;
+    private String nome, anoConstrucao, descricao, localidade, tipoMonumento,estiloConstrucao, foto, ranking, latitude, longitude;
     //Comum a todas as instâncias da classe
 
-    public PontoTuristico(int id, String nome, String anoConstrucao, String descricao, String localidade, String foto) {
+    public PontoTuristico(int id, String nome, String anoConstrucao, String descricao, String localidade, String tipoMonumento, String estiloConstrucao, String ranking, String foto, String latitude, String longitude, int status) {
         this.id = id;
         this.nome = nome;
         this.anoConstrucao = anoConstrucao;
         this.descricao = descricao;
         this.localidade = localidade;
+        this.tipoMonumento = tipoMonumento;
+        this.estiloConstrucao = estiloConstrucao;
+        this.ranking = ranking;
         this.foto = foto;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.status = status;
+    }
+
+    public String getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(String ranking) {
+        this.ranking = ranking;
+    }
+
+    public String getTipoMonumento() {
+        return tipoMonumento;
+    }
+
+    public void setTipoMonumento(String tipoMonumento) {
+        this.tipoMonumento = tipoMonumento;
+    }
+
+    public String getEstiloConstrucao() {
+        return estiloConstrucao;
+    }
+
+    public void setEstiloConstrucao(String estiloConstrucao) {
+        this.estiloConstrucao = estiloConstrucao;
     }
 
     public int getId() {

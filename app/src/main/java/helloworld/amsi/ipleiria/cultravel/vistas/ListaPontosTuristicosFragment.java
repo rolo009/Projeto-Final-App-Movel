@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SearchView;
 
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -22,10 +21,8 @@ import helloworld.amsi.ipleiria.cultravel.modelos.SingletonGestorCultravel;
 
 public class ListaPontosTuristicosFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, PontosTuristicosListener {
 
-    private static final int ADICIONAR = 1;
     private ListView lvListaPT;
     private ArrayList<PontoTuristico> pontosTuristicos;
-    private SearchView searchView;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     public ListaPontosTuristicosFragment() {
@@ -37,10 +34,10 @@ public class ListaPontosTuristicosFragment extends Fragment implements SwipeRefr
 
         View view = inflater.inflate(R.layout.fragment_lista_pontos_turisticos, container, false);
 
-        lvListaPT = view.findViewById(R.id.lvListaLivros);
+        lvListaPT = view.findViewById(R.id.lvListaPontosTuristicos);
 
         SingletonGestorCultravel.getInstance(getContext()).setLivrosListener(this);
-        SingletonGestorCultravel.getInstance(getContext()).getPontosTuristicosFavoritosBD();
+        SingletonGestorCultravel.getInstance(getContext()).getAllPontosTuristicosAPI(getContext());
 
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -58,6 +55,13 @@ public class ListaPontosTuristicosFragment extends Fragment implements SwipeRefr
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        SingletonGestorCultravel.getInstance(getContext()).setLivrosListener(this);
+    }
+
+    @Override
     public void onRefresh() {
         SingletonGestorCultravel.getInstance(getContext()).getPontosTuristicosFavoritosBD();
         swipeRefreshLayout.setRefreshing(false);
@@ -68,5 +72,10 @@ public class ListaPontosTuristicosFragment extends Fragment implements SwipeRefr
         if (pontosTuristicos != null) {
             lvListaPT.setAdapter(new ListaPontoTuristicoAdaptador(getContext(), pontosTuristicos));
         }
+    }
+
+    @Override
+    public void onRefreshDetalhes() {
+
     }
 }

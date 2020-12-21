@@ -25,9 +25,8 @@ public class PontoTuristicoDetailsActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_ponto_turistico_details);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         int id = getIntent().getIntExtra(ID, -1);
         pontoTuristico = SingletonGestorCultravel.getInstance(this).getPontoTuristico(id);
@@ -47,11 +46,11 @@ public class PontoTuristicoDetailsActivity extends AppCompatActivity {
     private void carregarPontoTuristico(PontoTuristico pontoTuristico) {
 
         tv_NomePT.setText(pontoTuristico.getNome());
-        //tv_tipoMonumento.setText(pontoTuristico.get);
-        //tv_estiloConstrucao = findViewById(R.id.tv_estiloConstrucao);
+        tv_tipoMonumento.setText(pontoTuristico.getTipoMonumento());
+        tv_estiloConstrucao.setText(pontoTuristico.getEstiloConstrucao());
         tv_anoConstrucao.setText(pontoTuristico.getAnoConstrucao()+"");
-        //tv_localidade = findViewById(R.id.tv_localidade);
-        //tv_rating = findViewById(R.id.tv_rating);
+        tv_localidade.setText(pontoTuristico.getLocalidade());
+        tv_rating.setText(pontoTuristico.getRanking());
         tv_descricao.setText(pontoTuristico.getDescricao());
         Glide.with(this)
                 .load(pontoTuristico.getFoto())

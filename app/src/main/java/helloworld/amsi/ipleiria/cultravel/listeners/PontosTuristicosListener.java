@@ -7,4 +7,7 @@ import helloworld.amsi.ipleiria.cultravel.modelos.PontoTuristico;
 public interface PontosTuristicosListener {
     public void onRefreshListaLivros(ArrayList<PontoTuristico> pontoTuristicos);
 
+    void onRefreshDetalhes();
+
+
 }

@@ -17,7 +17,13 @@ public class PontosTuristicosFavoritosBDHelper extends SQLiteOpenHelper {
     private static final String ID_PONTO_TURISTICO = "idPontoTuristico";
     private static final String NOME_PONTO_TURISTICO = "nomePontoTuristico";
     private static final String LOCALIDADE_PONTO_TURISTICO = "localidadePontoTuristico";
+    private static final String TIPO_MONUMENTO_PONTO_TURISTICO = "tipoMonunmentoPontoTuristico";
+    private static final String ESTILO_CONSTRUCAO_PONTO_TURISTICO = "estiloConstrucaoPontoTuristico";
+    private static final String RANKING_PONTO_TURISTICO = "rankingPontoTuristico";
     private static final String FOTO_PONTO_TURISTICO = "fotoPontoTuristico";
+    private static final String LATITUDE_PONTO_TURISTICO = "latitudePontoTuristico";
+    private static final String LOGITUDE_PONTO_TURISTICO = "longitudePontoTuristico";
+    private static final String STATUS_PONTO_TURISTICO = "statusPontoTuristico";
 
     private final SQLiteDatabase db;
 
@@ -34,6 +40,12 @@ public class PontosTuristicosFavoritosBDHelper extends SQLiteOpenHelper {
                 ID_PONTO_TURISTICO + " INTEGER NOT NULL, " +
                 NOME_PONTO_TURISTICO + " TEXT NOT NULL, " +
                 LOCALIDADE_PONTO_TURISTICO + " TEXT NOT NULL, " +
+                TIPO_MONUMENTO_PONTO_TURISTICO + " TEXT NOT NULL, " +
+                ESTILO_CONSTRUCAO_PONTO_TURISTICO + " TEXT NOT NULL, " +
+                RANKING_PONTO_TURISTICO + " TEXT NOT NULL, " +
+                LATITUDE_PONTO_TURISTICO + " TEXT NOT NULL, " +
+                LOGITUDE_PONTO_TURISTICO + " TEXT NOT NULL, " +
+                STATUS_PONTO_TURISTICO + " TEXT NOT NULL, " +
                 FOTO_PONTO_TURISTICO + " INTEGER );";
         db.execSQL(createTableFavoritos);
     }
@@ -60,6 +72,12 @@ public class PontosTuristicosFavoritosBDHelper extends SQLiteOpenHelper {
         values.put(ID_PONTO_TURISTICO, pontoTuristico.getId());
         values.put(NOME_PONTO_TURISTICO, pontoTuristico.getNome());
         values.put(LOCALIDADE_PONTO_TURISTICO, pontoTuristico.getLocalidade());
+        values.put(TIPO_MONUMENTO_PONTO_TURISTICO, pontoTuristico.getTipoMonumento());
+        values.put(ESTILO_CONSTRUCAO_PONTO_TURISTICO, pontoTuristico.getEstiloConstrucao());
+        values.put(RANKING_PONTO_TURISTICO, pontoTuristico.getRanking());
+        values.put(LATITUDE_PONTO_TURISTICO, pontoTuristico.getFoto());
+        values.put(LOGITUDE_PONTO_TURISTICO, pontoTuristico.getFoto());
+        values.put(STATUS_PONTO_TURISTICO, pontoTuristico.getFoto());
         values.put(FOTO_PONTO_TURISTICO, pontoTuristico.getFoto());
         long id = this.db.insert(TABLE_NAME, null, values);
 
@@ -84,7 +102,14 @@ public class PontosTuristicosFavoritosBDHelper extends SQLiteOpenHelper {
         values.put(ID_PONTO_TURISTICO, pontoTuristico.getId());
         values.put(NOME_PONTO_TURISTICO, pontoTuristico.getNome());
         values.put(LOCALIDADE_PONTO_TURISTICO, pontoTuristico.getLocalidade());
+        values.put(TIPO_MONUMENTO_PONTO_TURISTICO, pontoTuristico.getTipoMonumento());
+        values.put(ESTILO_CONSTRUCAO_PONTO_TURISTICO, pontoTuristico.getEstiloConstrucao());
+        values.put(RANKING_PONTO_TURISTICO, pontoTuristico.getRanking());
+        values.put(LATITUDE_PONTO_TURISTICO, pontoTuristico.getFoto());
+        values.put(LOGITUDE_PONTO_TURISTICO, pontoTuristico.getFoto());
+        values.put(STATUS_PONTO_TURISTICO, pontoTuristico.getFoto());
         values.put(FOTO_PONTO_TURISTICO, pontoTuristico.getFoto());
+
         int nRows = this.db.update(TABLE_NAME, values, "id = ?", new String[]{pontoTuristico.getId() + ""});
         return (nRows > 0);
     }
@@ -114,13 +139,14 @@ public class PontosTuristicosFavoritosBDHelper extends SQLiteOpenHelper {
      */
 
     public ArrayList<PontoTuristico> getAllPontosTuristicosFavoritosBD() {
-        //captar todos os livros
+        //captar todos os pontos turisticos
+
         ArrayList<PontoTuristico> pontoTuristico = new ArrayList<>();
-        Cursor cursor = this.db.query(TABLE_NAME, new String[]{ID_FAVORITOS, ID_PONTO_TURISTICO, NOME_PONTO_TURISTICO, LOCALIDADE_PONTO_TURISTICO, FOTO_PONTO_TURISTICO}, null, null, null, null, null);
+        Cursor cursor = this.db.query(TABLE_NAME, new String[]{ID_FAVORITOS, ID_PONTO_TURISTICO, NOME_PONTO_TURISTICO, LOCALIDADE_PONTO_TURISTICO,TIPO_MONUMENTO_PONTO_TURISTICO, ESTILO_CONSTRUCAO_PONTO_TURISTICO, RANKING_PONTO_TURISTICO, FOTO_PONTO_TURISTICO, LATITUDE_PONTO_TURISTICO, LOGITUDE_PONTO_TURISTICO, STATUS_PONTO_TURISTICO}, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
-                PontoTuristico auxPontoTuristico = new PontoTuristico(cursor.getInt(0),cursor.getString(4), cursor.getString(5), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+                PontoTuristico auxPontoTuristico = new PontoTuristico(cursor.getInt(0),cursor.getString(4), cursor.getString(5), cursor.getString(1), cursor.getString(2),cursor.getString(6),cursor.getString(7), cursor.getString(8), cursor.getString(3), cursor.getString(9), cursor.getString(10), cursor.getInt(11));
                 auxPontoTuristico.setId(cursor.getInt(0));
                 pontoTuristico.add(auxPontoTuristico);
             } while (cursor.moveToNext());
