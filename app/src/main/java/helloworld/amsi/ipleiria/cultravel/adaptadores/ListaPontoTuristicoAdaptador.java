@@ -65,16 +65,19 @@ public class ListaPontoTuristicoAdaptador extends BaseAdapter {
     }
 
     private class ViewHolderLista {
-        TextView tvNomePT;
+        TextView tvNomePT, tvTipoMonumento, tvRanking;
         ImageView imgFotoPT;
 
         public ViewHolderLista(View view) {
             tvNomePT = view.findViewById(R.id.tvNomePT);
+            tvTipoMonumento = view.findViewById(R.id.tvTipoMonumento);
+            tvRanking = view.findViewById(R.id.tvRanking);
             imgFotoPT = view.findViewById(R.id.imgFotoPT);
         }
 
         public void update(PontoTuristico pontoTuristico) {
             tvNomePT.setText(pontoTuristico.getNome());
+            tvTipoMonumento.setText(pontoTuristico.getTipoMonumento());
             Glide.with(context)
                     .load(pontoTuristico.getFoto())
                     .placeholder(R.drawable.castelo_de_leiria)

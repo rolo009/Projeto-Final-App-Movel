@@ -1,29 +1,29 @@
 package helloworld.amsi.ipleiria.cultravel.vistas;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
 import helloworld.amsi.ipleiria.cultravel.R;
-import helloworld.amsi.ipleiria.cultravel.vistas.SearchFragment;
 
 public class MenuMainActivity extends AppCompatActivity{
 
+    public static final String EMAIL = "EMAIL";
+    public static final String TOKEN = "TOKEN";
     private BottomNavigationView bottomNavigationView;
-
     private FragmentManager fragmentManager;
+    public static final String PREF_INFO_USER = "PREF_INFO_USER";
+    private String token;
+
 
 
     @Override
@@ -36,6 +36,8 @@ public class MenuMainActivity extends AppCompatActivity{
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                SharedPreferences sharedPrefInfoUser = getSharedPreferences(MenuMainActivity.PREF_INFO_USER, Context.MODE_PRIVATE);
+                token = sharedPrefInfoUser.getString(TOKEN, null);
                 Fragment fragment = null;
                 switch (item.getItemId()) {
                     case R.id.nav_home:
@@ -43,17 +45,29 @@ public class MenuMainActivity extends AppCompatActivity{
                         setTitle(item.getTitle());
                         break;
                     case R.id.nav_favoritos:
-                        fragment = new FavouriteFragment();
-                        setTitle(item.getTitle());
-                        break;
+                        if(token != null){
+                            fragment = new FavouriteFragment();
+                            setTitle(item.getTitle());
+                            break;
+                        }else{
+                            fragment = new LoginFragment();
+                            setTitle(item.getTitle());
+                            break;
+                        }
                     case R.id.nav_contactos:
                         fragment = new ContactosFragment();
                         System.out.println("-->Nav Email");
                         break;
                     case R.id.nav_areaPessoal:
-                        fragment = new EditarRegistoFragment();
-                        setTitle(item.getTitle());
-                        break;
+                        if(token != null){
+                            fragment = new UserProfileFragment();
+                            setTitle(item.getTitle());
+                            break;
+                        }else{
+                            fragment = new LoginFragment();
+                            setTitle(item.getTitle());
+                            break;
+                        }
                 }
 
                 if (fragment != null) {
@@ -75,9 +89,9 @@ public class MenuMainActivity extends AppCompatActivity{
     }*/
 
     private void carregarFragmentoInicial() {
-        bottomNavigationView.setSelectedItemId(R.id.nav_home);
-        Fragment fragment = new ListaPontosTuristicosFragment();
-        fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();
-        setTitle("HOME");
+            Fragment fragment = new SearchFragment();
+            fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();
+
+
     }
 }

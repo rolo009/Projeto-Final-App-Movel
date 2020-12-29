@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/design_sem_nome__6_"
+    android:padding="10dp"
     tools:context=".vistas.FavouriteFragment">
 
     <LinearLayout
@@ -23,6 +24,15 @@
                 android:layout_height="100dp"
                 android:src="@drawable/seta_logo" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="FAVORITOS"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="27sp" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"

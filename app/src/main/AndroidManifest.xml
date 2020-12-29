@@ -13,8 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".vistas.UserProfileActivity"></activity>
-        <activity android:name=".PerfilUserActivity" />
+        <activity android:name=".vistas.UserProfileFragment"></activity>
         <activity
             android:name=".vistas.PontoTuristicoDetailsActivity"
             android:parentActivityName=".vistas.MenuMainActivity"

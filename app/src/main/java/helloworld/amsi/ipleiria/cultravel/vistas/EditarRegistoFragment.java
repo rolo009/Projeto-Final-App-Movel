@@ -8,12 +8,16 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.RadioButton;
 
 import helloworld.amsi.ipleiria.cultravel.R;
 
 public class EditarRegistoFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener  {
 
     private SwipeRefreshLayout swipeRefreshLayout;
+    private EditText etPrimeiroNome, etUltimoNome, etDtaNascimento, etNomeUtilizador, etEmail, etPassword, etConfirmarPassword, etMorada, etLocalidade;
+    private RadioButton rbtnMasculino, rbtnFeminino;
 
     public EditarRegistoFragment() {
         // Required empty public constructor
@@ -28,7 +32,7 @@ public class EditarRegistoFragment extends Fragment implements SwipeRefreshLayou
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_editar_registo, container, false);
+        return inflater.inflate(R.layout.fragment_registo, container, false);
     }
 
     @Override

@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import helloworld.amsi.ipleiria.cultravel.modelos.PontoTuristico;
 
 public interface PontosTuristicosListener {
-    public void onRefreshListaLivros(ArrayList<PontoTuristico> pontoTuristicos);
+
+    public void onRefreshListaPontosTuristicos(ArrayList<PontoTuristico> pontoTuristicos);
 
     void onRefreshDetalhes();
+
+    public void onRefreshListaFavoritosPontosTuristicos(ArrayList<PontoTuristico> pontoTuristicos);
 
 
 }

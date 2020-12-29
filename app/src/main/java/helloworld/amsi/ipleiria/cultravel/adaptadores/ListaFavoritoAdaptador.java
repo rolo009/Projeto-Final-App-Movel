@@ -5,9 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 
+import helloworld.amsi.ipleiria.cultravel.R;
 import helloworld.amsi.ipleiria.cultravel.modelos.PontoTuristico;
 
 public class ListaFavoritoAdaptador extends BaseAdapter {
@@ -22,21 +28,58 @@ public class ListaFavoritoAdaptador extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return pontosTuristicos.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return pontosTuristicos.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return pontosTuristicos.get(position).getId();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        if (inflater == null) {
+            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.item_lista_favoritos, null);
+        }
+
+        /*otimização*/
+        ViewHolderLista viewHolder = (ViewHolderLista) convertView.getTag();
+        if (viewHolder == null) {
+            viewHolder = new ViewHolderLista(convertView);
+            convertView.setTag(viewHolder);
+        }
+
+        viewHolder.update(pontosTuristicos.get(position));
+
+        return convertView;
+    }
+
+    private class ViewHolderLista {
+        TextView tvNomePT, tvTipoMonumento;
+        ImageView imgFotoPT;
+
+        public ViewHolderLista(View view) {
+            tvNomePT = view.findViewById(R.id.tvNomePT);
+            tvTipoMonumento = view.findViewById(R.id.tvTipoMonumento);
+            imgFotoPT = view.findViewById(R.id.imgFotoPT);
+        }
+
+        public void update(PontoTuristico pontoTuristico) {
+            tvNomePT.setText(pontoTuristico.getNome());
+            tvTipoMonumento.setText(pontoTuristico.getTipoMonumento());
+            Glide.with(context)
+                    .load(pontoTuristico.getFoto())
+                    .placeholder(R.drawable.castelo_de_leiria)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imgFotoPT);
+        }
     }
 }

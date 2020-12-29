@@ -2,10 +2,18 @@ package helloworld.amsi.ipleiria.cultravel.modelos;
 
 public class PontoTuristico {
     private int id,status;
-    private String nome, anoConstrucao, descricao, localidade, tipoMonumento,estiloConstrucao, foto, ranking, latitude, longitude;
+    private String nome;
+    private String anoConstrucao;
+    private String descricao;
+    private String localidade;
+    private String tipoMonumento;
+    private String estiloConstrucao;
+    private String foto;
+    private String latitude;
+    private String longitude;
     //Comum a todas as instâncias da classe
 
-    public PontoTuristico(int id, String nome, String anoConstrucao, String descricao, String localidade, String tipoMonumento, String estiloConstrucao, String ranking, String foto, String latitude, String longitude, int status) {
+    public PontoTuristico(int id, String nome, String anoConstrucao, String descricao, String localidade, String tipoMonumento, String estiloConstrucao, String foto, String latitude, String longitude, int status) {
         this.id = id;
         this.nome = nome;
         this.anoConstrucao = anoConstrucao;
@@ -13,19 +21,10 @@ public class PontoTuristico {
         this.localidade = localidade;
         this.tipoMonumento = tipoMonumento;
         this.estiloConstrucao = estiloConstrucao;
-        this.ranking = ranking;
         this.foto = foto;
         this.latitude = latitude;
         this.longitude = longitude;
         this.status = status;
-    }
-
-    public String getRanking() {
-        return ranking;
-    }
-
-    public void setRanking(String ranking) {
-        this.ranking = ranking;
     }
 
     public String getTipoMonumento() {
@@ -91,5 +90,29 @@ public class PontoTuristico {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 }

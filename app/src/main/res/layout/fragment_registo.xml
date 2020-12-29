@@ -24,6 +24,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:layout_weight="1"
         android:text="@string/registar"
         android:textAlignment="center"
@@ -45,59 +46,67 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/etNomeContactos"
+            android:id="@+id/etPrimeiroNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="#FFFFFF"
             android:ems="10"
-            android:inputType="textPersonName"
             android:hint="@string/primeiro_nome"
-            android:backgroundTint="#FFFFFF"
+            android:inputType="textPersonName"
             android:textColor="#FFFFFF"
             android:textColorHint="@android:color/background_light"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/etUltimoNomeRegisto"
+            android:id="@+id/etUltimoNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="#FFFFFF"
             android:ems="10"
-            android:inputType="textPersonName"
             android:hint="Último Nome"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="#FFFFFF"
-            android:textColorHint="@android:color/background_light"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/etDataNascimentoRegisto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="date"
-            android:hint="Data de Nascimento"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="#FFFFFF"
-            android:textColorHint="@android:color/background_light"
-            android:textSize="14sp"/>
-
-        <EditText
-            android:id="@+id/etNomeUtilizadorRegisto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Nome de Utilizador"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etDtaNascimento"
+                android:layout_width="307dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:ems="10"
+                android:hint="Data de Nascimento"
+                android:inputType="date"
+                android:textColor="#FFFFFF"
+                android:textColorHint="@android:color/background_light"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etNomeUtilizador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
+            android:ems="10"
+            android:hint="Nome de Utilizador"
+            android:inputType="textPersonName"
             android:textColor="#FFFFFF"
             android:textColorHint="@android:color/background_light"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/etEmailRegisto"
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -110,7 +119,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/etPasswordRegisto"
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -123,7 +132,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/etConfirmarPasswordRegisto"
+            android:id="@+id/etConfirmarPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -136,27 +145,40 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/etMoradaRegisto"
+            android:id="@+id/etMorada"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Morada"
             android:backgroundTint="#FFFFFF"
+            android:ems="10"
+            android:hint="Morada"
+            android:inputType="textPersonName"
             android:textColor="#FFFFFF"
             android:textColorHint="@android:color/background_light"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/etLocalidadeRegisto"
+            android:id="@+id/etLocalidade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Localidade"
             android:backgroundTint="#FFFFFF"
+            android:ems="10"
+            android:hint="Localidade"
+            android:inputType="textPersonName"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/etDistrito"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#FFFFFF"
+            android:ems="10"
+            android:hint="Distrito"
+            android:inputType="textPersonName"
             android:textColor="#FFFFFF"
             android:textColorHint="@android:color/background_light"
             android:textSize="14sp" />
@@ -168,28 +190,31 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/rbtnMasculinoRegisto"
+                android:id="@+id/rbtnMasculino"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#FFFFFF"
+                android:buttonTint="#FFFFFF"
+                android:checked="false"
                 android:text="Masculino"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
-                android:textSize="14sp"
-                android:buttonTint = "#FFFFFF"/>
+                android:textSize="14sp" />
+
 
             <RadioButton
-                android:id="@+id/rbtnFemininoRegisto"
+                android:id="@+id/rbtnFeminino"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#FFFFFF"
+                android:buttonTint="#FFFFFF"
+                android:checked="false"
                 android:text="Feminino"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
-                android:textSize="14sp"
-                android:buttonTint = "#FFFFFF"/>
+                android:textSize="14sp" />
         </LinearLayout>
 
         <Space
@@ -209,12 +234,12 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#C86D51"
-                android:text="@string/login"
+                android:text="@string/registar"
                 android:textColor="#FFFFFF" />
 
             <Space

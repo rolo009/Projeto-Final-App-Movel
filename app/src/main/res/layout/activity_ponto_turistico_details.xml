@@ -50,7 +50,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/ic_go_google_maps"
-                android:backgroundTint="#FFFFFF" />
+                android:backgroundTint="#FFFFFF"
+                android:onClick="onClickGoGoogleMaps"/>
+
 
             <Button
                 android:id="@+id/btnAddFavoritos"
@@ -58,7 +60,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/ic_add_favoritos"
-                android:backgroundTint="#FFFFFF" />
+                android:backgroundTint="#FFFFFF"
+                android:onClick="onClickAddFavoritos"/>
 
         </LinearLayout>
 
@@ -103,31 +106,35 @@
                     android:id="@+id/tv_tipoMonumento"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
                     android:layout_weight="1"
                     android:text="Castelo"
                     android:textColor="#FFFFFF"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <TextView
-                    android:id="@+id/textViewEstiloContr"
+                    android:id="@+id/tvEC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="ESTILO DE CONSTRUÇÃO"
+                    android:visibility="visible"
                     android:textColor="#FFFFFF" />
 
                 <TextView
                     android:id="@+id/tv_estiloConstrucao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
                     android:layout_weight="1"
                     android:text="Castelo"
                     android:textColor="#FFFFFF"
-                    android:textSize="12sp" />
+                    android:textSize="11sp"
+                    android:visibility="visible" />
 
 
                 <TextView
-                    android:id="@+id/textViewAnoConstr"
+                    android:id="@+id/tvAC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -141,7 +148,7 @@
                     android:layout_weight="1"
                     android:text="Castelo"
                     android:textColor="#FFFFFF"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
             </LinearLayout>
 
@@ -162,10 +169,11 @@
                     android:id="@+id/tv_localidade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
                     android:layout_weight="1"
                     android:text="Castelo"
                     android:textColor="#FFFFFF"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <TextView
                     android:id="@+id/textViewRating"
@@ -182,7 +190,7 @@
                     android:layout_weight="1"
                     android:text="Castelo"
                     android:textColor="#FFFFFF"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
             </LinearLayout>
 
@@ -196,7 +204,7 @@
             android:orientation="vertical"
             android:paddingLeft="40dp"
             android:paddingTop="20dp"
-            android:paddingRight="0dp">
+            android:paddingRight="40dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -225,8 +233,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Em Leiria ..........................................................."
-                    android:textColor="#FFFFFF" />
+                    android:text="Em Leiria"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp" />
             </LinearLayout>
 
         </LinearLayout>

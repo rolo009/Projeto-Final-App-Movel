@@ -5,10 +5,19 @@ import java.util.Date;
 public class Utilizador {
 
     private int id;
-    private String primeiroNome, ultimoNome, username, email, password, morada, localidade, sexo;
-private Date dtaNascimento;
+    private String primeiroNome;
+    private String ultimoNome;
+    private String username;
+    private String email;
+    private String password;
+    private String morada;
+    private String localidade;
+    private String distrito;
+    private String sexo;
+    private String dtaNascimento;
+
     //Comum a todas as instâncias da classe
-    public Utilizador(int id, String primeiroNome,String ultimoNome, Date dtaNascimento, String username, String email, String password, String localidade, String sexo) {
+    public Utilizador(int id, String primeiroNome,String ultimoNome, String dtaNascimento, String username, String email, String password, String localidade, String morada, String distrito, String sexo) {
         this.id = id;
         this.primeiroNome = primeiroNome;
         this.ultimoNome = ultimoNome;
@@ -16,7 +25,9 @@ private Date dtaNascimento;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.morada = morada;
         this.localidade = localidade;
+        this.distrito = distrito;
         this.sexo = sexo;
     }
 
@@ -84,6 +95,15 @@ private Date dtaNascimento;
         this.localidade = localidade;
     }
 
+    public String getDistrito() {
+        return distrito;
+    }
+
+    public void setDistrito(String distrito) {
+        this.distrito = distrito;
+    }
+
+
     public String getSexo() {
         return sexo;
     }
@@ -92,11 +112,11 @@ private Date dtaNascimento;
         this.sexo = sexo;
     }
 
-    public Date getDtaNascimento() {
+    public String getDtaNascimento() {
         return dtaNascimento;
     }
 
-    public void setDtaNascimento(Date dtaNascimento) {
+    public void setDtaNascimento(String dtaNascimento) {
         this.dtaNascimento = dtaNascimento;
     }
 }
