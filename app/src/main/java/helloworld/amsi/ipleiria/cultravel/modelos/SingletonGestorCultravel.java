@@ -270,6 +270,8 @@ public class SingletonGestorCultravel {
         volleyQueue.add(req);
     }
 
+
+
     public void getUsernameAPI(final Context context, String username) {
         JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, mUrlAPISearchUsername + username, null, new Response.Listener<JSONArray>() {
 

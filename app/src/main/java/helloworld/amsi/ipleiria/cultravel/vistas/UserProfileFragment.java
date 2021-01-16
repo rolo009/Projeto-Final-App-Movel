@@ -45,8 +45,19 @@ public class UserProfileFragment extends Fragment {
             }
         });
 
+        Button btn_editarRegisto = view.findViewById(R.id.btn_editarRegisto);
+        btn_editarRegisto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new EditarRegistoFragment();
+                fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).addToBackStack(null).commit();
+            }
+        });
+
 
         return view;
     }
+
+
 
 }
