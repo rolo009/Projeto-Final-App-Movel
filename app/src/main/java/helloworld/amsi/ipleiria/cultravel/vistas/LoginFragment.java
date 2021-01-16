@@ -95,12 +95,7 @@ public class LoginFragment extends Fragment implements UserListener {
     }
 
     @Override
-    public void onUserRegistado() {
-
-    }
-
-    @Override
-    public void onDatePickerSelected(String data) {
+    public void onUserRegistado(String response) {
 
     }
 
@@ -114,6 +109,22 @@ public class LoginFragment extends Fragment implements UserListener {
         } else {
             etPasswordLogin.setError("Utilizador ou Palavra-Passe Incorretos!");
         }
+    }
+
+    @Override
+    public void onRefreshDetalhes() {
+
+    }
+
+    @Override
+    public void onApagarConta() {
+
+    }
+
+    @Override
+    public void onErroLogin() {
+        Toast.makeText(getContext(), "A sua conta não cumpre os requisitos para que seja possivel iniciar sessão! Para mais informações contacto o suporte.", Toast.LENGTH_LONG).show();
+
     }
 
     private void guardarInfoSharedPref(String token, String email) {

@@ -21,5 +21,9 @@
     <string name="primNomeInvalido">Primeiro Nome Inválido</string>
     <string name="ultimoNomeInvalido">Último Nome inválido</string>
     <string name="dtaNascInvalida">Data de Nascimento Inválida</string>
+    <string name="nomeInvalido">Nome inválido!</string>
+    <string name="emailInvalido">Email Inválido!</string>
+    <string name="assuntoInvalido">Assunto Inválido!</string>
+    <string name="mensagemInvalida">Mensagem Inválida</string>
 </resources>
 

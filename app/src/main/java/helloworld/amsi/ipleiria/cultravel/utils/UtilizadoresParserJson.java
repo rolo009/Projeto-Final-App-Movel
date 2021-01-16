@@ -39,7 +39,7 @@ public class UtilizadoresParserJson {
     }
 
     public static Utilizador parserJsonUtilizador(String response) {
-        Utilizador auxLivro = null;
+        Utilizador auxUtilizador = null;
 
         try {
             JSONObject utilizador = new JSONObject(response);
@@ -47,19 +47,16 @@ public class UtilizadoresParserJson {
             String primeiroNome = utilizador.getString("primeiroNome");
             String ultimoNome = utilizador.getString("ultimoNome");
             String dtaNascimento = utilizador.getString("dtaNascimento");
-            String username = utilizador.getString("username");
-            String email = utilizador.getString("email");
-            String password = utilizador.getString("password");
             String morada = utilizador.getString("morada");
             String localidade = utilizador.getString("localidade");
             String distrito = utilizador.getString("distrito");
             String sexo = utilizador.getString("sexo");
 
-            Utilizador auxUtilizador = new Utilizador(id, primeiroNome, ultimoNome, dtaNascimento,username, email, password, morada, localidade, distrito, sexo);
+            auxUtilizador = new Utilizador(id, primeiroNome, ultimoNome, dtaNascimento,null, null, null, morada, localidade, distrito, sexo);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return auxLivro;
+        return auxUtilizador;
     }
 
     public static String parserJsonLogin(String response) {

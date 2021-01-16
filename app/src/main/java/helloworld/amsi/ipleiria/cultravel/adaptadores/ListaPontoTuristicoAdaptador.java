@@ -2,6 +2,7 @@ package helloworld.amsi.ipleiria.cultravel.adaptadores;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import helloworld.amsi.ipleiria.cultravel.R;
@@ -65,19 +68,20 @@ public class ListaPontoTuristicoAdaptador extends BaseAdapter {
     }
 
     private class ViewHolderLista {
-        TextView tvNomePT, tvTipoMonumento, tvRanking;
+        TextView tvNomePT, tvTipoMonumento, tvDescricao;
         ImageView imgFotoPT;
 
         public ViewHolderLista(View view) {
             tvNomePT = view.findViewById(R.id.tvNomePT);
             tvTipoMonumento = view.findViewById(R.id.tvTipoMonumento);
-            tvRanking = view.findViewById(R.id.tvRanking);
+            tvDescricao = view.findViewById(R.id.tvDescricao);
             imgFotoPT = view.findViewById(R.id.imgFotoPT);
         }
 
         public void update(PontoTuristico pontoTuristico) {
             tvNomePT.setText(pontoTuristico.getNome());
             tvTipoMonumento.setText(pontoTuristico.getTipoMonumento());
+            tvDescricao.setText(pontoTuristico.getDescricao());
             Glide.with(context)
                     .load(pontoTuristico.getFoto())
                     .placeholder(R.drawable.castelo_de_leiria)
