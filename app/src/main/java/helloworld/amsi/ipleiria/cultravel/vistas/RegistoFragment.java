@@ -1,20 +1,29 @@
 package helloworld.amsi.ipleiria.cultravel.vistas;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.StringRequest;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,7 +54,9 @@ public class RegistoFragment extends Fragment implements UserListener {
         fragmentManager = getFragmentManager();
 
         View view = inflater.inflate(R.layout.fragment_registo, container, false);
-        //SingletonGestorCultravel.getInstance(getContext()).setUserListener(this); -- corrigir
+        SingletonGestorCultravel.getInstance(getContext()).setUserListener(this);
+
+        final Calendar myCalendar = Calendar.getInstance();
 
         etPrimeiroNome = view.findViewById(R.id.etPrimeiroNome);
         etUltimoNome = view.findViewById(R.id.etUltimoNome);
@@ -60,16 +71,32 @@ public class RegistoFragment extends Fragment implements UserListener {
         rbtnMasculino = view.findViewById(R.id.rbtnMasculino);
         rbtnFeminino = view.findViewById(R.id.rbtnFeminino);
 
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel(myCalendar);
+            }
+
+        };
+
         etDtaNascimento.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = new DatePickerFragment();
-                newFragment.show(fragmentManager, "datePicker");
-
+                // TODO Auto-generated method stub
+                new DatePickerDialog(getContext(), AlertDialog.THEME_HOLO_LIGHT, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
-        Button button = view.findViewById(R.id.btnLogin);
+        Button button = view.findViewById(R.id.btnRegisto);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,18 +112,14 @@ public class RegistoFragment extends Fragment implements UserListener {
                     String localidade = etLocalidade.getText().toString();
                     String morada = etMorada.getText().toString();
                     String distrito = etDistrito.getText().toString();
-                    /*if (rbtnFeminino.isChecked() || rbtnMasculino.isChecked()) {
-                        if (rbtnMasculino.isChecked()) {
-                            String sexo = "Masculino";
-                        } else if (rbtnFeminino.isChecked()) {
-                            String sexo = "Feminino";
+                    String sexo = "";
 
-                        }
-                    }
                     if (rbtnMasculino.isChecked()) {
-                        String sexoRBtn = "Masculino";
+                        sexo = "Masculino";
+                    } else if (rbtnFeminino.isChecked()) {
+                        sexo = "Feminino";
                     }
-*/
+
 
                     if (!isPrimeiroNomeValido(primeiroNome)) {
                         etPrimeiroNome.setError(getString(R.string.primNomeInvalido));
@@ -107,10 +130,10 @@ public class RegistoFragment extends Fragment implements UserListener {
                         etUltimoNome.setError(getString(R.string.ultimoNomeInvalido));
                         return;
                     }
-                    /*if (!isDtaNascimentoValida(dtaNascimento)) {
+                    if (!isDtaNascimentoValida(dtaNascimento)) {
                         etDtaNascimento.setError(getString(R.string.dtaNascInvalida));
                         return;
-                    }*/
+                    }
 
                     if (!isUsernameValido(username)) {
                         etNomeUtilizador.setError("Nome de Utilizador Inválido");
@@ -118,17 +141,17 @@ public class RegistoFragment extends Fragment implements UserListener {
                     }
 
                     if (!isEmailValido(email)) {
-                        etEmail.setError("Email Inválido");
+                        etEmail.setError(getString(R.string.emailInvalido));
                         return;
                     }
 
                     if (!isPasswordValida(password)) {
-                        etPassword.setError("Palavra Passe Inválida");
+                        etPassword.setError("Palavra Passe Inválida, é necessário ter mais de 8 caractéres");
                         return;
                     }
 
                     if (!isConfirmPasswordValido(confirmPassword)) {
-                        etConfirmarPassword.setError("Palavra Passe Inválida");
+                        etConfirmarPassword.setError("Palavra Passe Inválida, é necessário ter mais de 8 caractéres");
                         return;
                     }
 
@@ -151,7 +174,7 @@ public class RegistoFragment extends Fragment implements UserListener {
                         etDistrito.setError("Distrito inválido");
                         return;
                     }
-                    String sexo = "Masculino";
+
                     utilizador = new Utilizador(0, primeiroNome, ultimoNome, dtaNascimento, username, email, password, localidade, morada, distrito, sexo);
                     SingletonGestorCultravel.getInstance(getContext()).registarUserAPI(utilizador, getContext());
 
@@ -162,6 +185,13 @@ public class RegistoFragment extends Fragment implements UserListener {
         });
 
         return view;
+    }
+
+    private void updateLabel(Calendar myCalendar) {
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
+
+        etDtaNascimento.setText(sdf.format(myCalendar.getTime()));
     }
 
     private boolean isPrimeiroNomeValido(String primeiroNome) {
@@ -181,45 +211,10 @@ public class RegistoFragment extends Fragment implements UserListener {
     }
 
     private boolean isDtaNascimentoValida(String dtaNascimento) {
-        matcher = pattern.matcher(dtaNascimento);
-
-        if (matcher.matches()) {
-            matcher.reset();
-
-            if (matcher.find()) {
-                String day = matcher.group(3);
-                String month = matcher.group(2);
-                int year = Integer.parseInt(matcher.group(1));
-
-                if (day.equals("31") &&
-                        (month.equals("4") || month.equals("6") || month.equals("9") ||
-                                month.equals("11") || month.equals("04") || month.equals("06") ||
-                                month.equals("09"))) {
-                    return false; // only 1,3,5,7,8,10,12 has 31 days
-                } else if (month.equals("2") || month.equals("02")) {
-                    //leap year
-                    if (year % 4 == 0) {
-                        if (day.equals("30") || day.equals("31")) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        if (day.equals("29") || day.equals("30") || day.equals("31")) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    }
-                } else {
-                    return true;
-                }
-            } else {
-                return false;
-            }
-        } else {
+        if (dtaNascimento == null) {
             return false;
         }
+        return dtaNascimento.length() > 0;
     }
 
     private boolean isUsernameValido(String username) {
@@ -238,7 +233,7 @@ public class RegistoFragment extends Fragment implements UserListener {
         if (password == null) {
             return true;
         }
-        return password.length() > 0;
+        return password.length() > 8;
 
     }
 
@@ -246,7 +241,7 @@ public class RegistoFragment extends Fragment implements UserListener {
         if (confirmPassword == null) {
             return true;
         }
-        return confirmPassword.length() > 0;
+        return confirmPassword.length() > 8;
 
     }
 
@@ -283,17 +278,42 @@ public class RegistoFragment extends Fragment implements UserListener {
     }
 
     @Override
-    public void onUserRegistado() {
+    public void onUserRegistado(String response) {
+        Log.e("resposta", response);
 
-    }
-
-    @Override
-    public void onDatePickerSelected(String data) {
-        etDtaNascimento.setText(data);
+        switch (response) {
+            case "0":
+                Log.e("eee", "1111");
+                etEmail.setError("Este email já se encontra registado!");
+                break;
+            case "1":
+                etNomeUtilizador.setError("Este nome de utilizador já se encontra registado!");
+                break;
+            case "true":
+                Fragment fragment = new LoginFragment();
+                fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).addToBackStack(null).commit();
+                Toast.makeText(getContext(), "Bem Vindo(a), a sua conta foi registada com sucesso!", Toast.LENGTH_LONG).show();
+                break;
+        }
     }
 
     @Override
     public void onValidateLogin(String token, String email) {
+
+    }
+
+    @Override
+    public void onRefreshDetalhes() {
+
+    }
+
+    @Override
+    public void onApagarConta() {
+
+    }
+
+    @Override
+    public void onErroLogin() {
 
     }
 }

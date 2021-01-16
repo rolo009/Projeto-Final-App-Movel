@@ -7,40 +7,38 @@
     android:background="@drawable/design_sem_nome__6_"
     android:orientation="vertical">
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_weight="1" />
-
-    <ImageView
-        android:id="@+id/ivLogoCultravel"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
-        android:contentDescription="@string/imglogocultravel"
-        app:srcCompat="@drawable/seta_logo" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1"
-        android:text="@string/registar"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="22sp" />
+        <ImageView
+            android:id="@+id/ivLogoCultravel"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/imglogocultravel"
+            app:srcCompat="@drawable/seta_logo" />
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="2dp"
-        android:layout_weight="1" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/registar"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginLeft="40dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="40dp"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -55,7 +53,7 @@
             android:hint="@string/primeiro_nome"
             android:inputType="textPersonName"
             android:textColor="#FFFFFF"
-            android:textColorHint="@android:color/background_light"
+            android:textColorHint="#65FFFFFF"
             android:textSize="14sp" />
 
         <EditText
@@ -68,7 +66,7 @@
             android:hint="Último Nome"
             android:inputType="textPersonName"
             android:textColor="#FFFFFF"
-            android:textColorHint="@android:color/background_light"
+            android:textColorHint="#65FFFFFF"
             android:textSize="14sp" />
 
         <LinearLayout
@@ -84,10 +82,11 @@
                 android:layout_weight="1"
                 android:backgroundTint="#FFFFFF"
                 android:ems="10"
+                android:focusable="false"
                 android:hint="Data de Nascimento"
                 android:inputType="date"
                 android:textColor="#FFFFFF"
-                android:textColorHint="@android:color/background_light"
+                android:textColorHint="#65FFFFFF"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -102,7 +101,7 @@
             android:hint="Nome de Utilizador"
             android:inputType="textPersonName"
             android:textColor="#FFFFFF"
-            android:textColorHint="@android:color/background_light"
+            android:textColorHint="#65FFFFFF"
             android:textSize="14sp" />
 
         <EditText
@@ -115,7 +114,7 @@
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:textColor="#FFFFFF"
-            android:textColorHint="@android:color/background_light"
+            android:textColorHint="#65FFFFFF"
             android:textSize="14sp" />
 
         <EditText
@@ -128,7 +127,7 @@
             android:hint="@string/palavra_passe"
             android:inputType="textPassword"
             android:textColor="#FFFFFF"
-            android:textColorHint="@android:color/background_light"
+            android:textColorHint="#65FFFFFF"
             android:textSize="14sp" />
 
         <EditText
@@ -141,7 +140,7 @@
             android:hint="Confirmar Palavra-Passe"
             android:inputType="textPassword"
             android:textColor="#FFFFFF"
-            android:textColorHint="@android:color/background_light"
+            android:textColorHint="#65FFFFFF"
             android:textSize="14sp" />
 
         <EditText
@@ -154,7 +153,7 @@
             android:hint="Morada"
             android:inputType="textPersonName"
             android:textColor="#FFFFFF"
-            android:textColorHint="@android:color/background_light"
+            android:textColorHint="#65FFFFFF"
             android:textSize="14sp" />
 
         <EditText
@@ -167,7 +166,7 @@
             android:hint="Localidade"
             android:inputType="textPersonName"
             android:textColor="#FFFFFF"
-            android:textColorHint="@android:color/background_light"
+            android:textColorHint="#65FFFFFF"
             android:textSize="14sp" />
 
         <EditText
@@ -180,7 +179,7 @@
             android:hint="Distrito"
             android:inputType="textPersonName"
             android:textColor="#FFFFFF"
-            android:textColorHint="@android:color/background_light"
+            android:textColorHint="#65FFFFFF"
             android:textSize="14sp" />
 
         <LinearLayout
@@ -234,7 +233,7 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/btnLogin"
+                android:id="@+id/btnRegisto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -249,10 +248,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="1" />
 
 </LinearLayout>

@@ -30,7 +30,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_NomeUtilizador"
+            android:id="@+id/tv_Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -96,13 +96,13 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btn_editarRegisto3"
+                    android:id="@+id/btn_apagarConta"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:background="#34FFFFFF"
-                    android:text="EDITAR REGISTO"
+                    android:text="APAGAR CONTA"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp" />
             </LinearLayout>

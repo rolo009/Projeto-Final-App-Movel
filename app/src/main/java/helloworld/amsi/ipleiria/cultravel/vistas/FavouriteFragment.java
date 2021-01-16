@@ -10,27 +10,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.util.ArrayList;
 
 import helloworld.amsi.ipleiria.cultravel.R;
 import helloworld.amsi.ipleiria.cultravel.adaptadores.ListaFavoritoAdaptador;
-import helloworld.amsi.ipleiria.cultravel.adaptadores.ListaPontoTuristicoAdaptador;
+import helloworld.amsi.ipleiria.cultravel.listeners.FavoritosListener;
 import helloworld.amsi.ipleiria.cultravel.listeners.PontosTuristicosListener;
 import helloworld.amsi.ipleiria.cultravel.modelos.PontoTuristico;
 import helloworld.amsi.ipleiria.cultravel.modelos.SingletonGestorCultravel;
 
-
-public class FavouriteFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, PontosTuristicosListener {
+public class FavouriteFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, FavoritosListener {
 
     private ListView lvListaFavoritos;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ArrayList<PontoTuristico> listaFavoritos;
     private PontoTuristico pontoTuristico;
+
 
 
     public FavouriteFragment() {
@@ -40,14 +46,10 @@ public class FavouriteFragment extends Fragment implements SwipeRefreshLayout.On
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_favourite, container, false);
-        SingletonGestorCultravel.getInstance(getContext()).setPontosTuristicosListener(this);
-
-        SharedPreferences sharedPreferencesUser = getActivity().getSharedPreferences(MenuMainActivity.PREF_INFO_USER, Context.MODE_PRIVATE);
-        String token = sharedPreferencesUser.getString(MenuMainActivity.TOKEN, null);
-
-        SingletonGestorCultravel.getInstance(getContext()).getAllPontosTuristicosFavoritosAPI(getContext(), token);
 
         lvListaFavoritos = view.findViewById(R.id.lvListaFavoritos);
+
+        SingletonGestorCultravel.getInstance(getContext()).setFavoritosListener(this);
 
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -60,26 +62,6 @@ public class FavouriteFragment extends Fragment implements SwipeRefreshLayout.On
                 startActivity(intent);
             }
         });
-        if (listaFavoritos != null) {
-            Button btnRemoverFavoritos = (Button) view.findViewById(R.id.btn_removerFavoritos);
-            btnRemoverFavoritos.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    SingletonGestorCultravel.getInstance(getContext()).removerPontoTuristicoFavoritoBD(pontoTuristico.getId());
-
-                }
-            });
-        }
-
-        lvListaFavoritos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), PontoTuristicoDetailsActivity.class);
-                intent.putExtra(PontoTuristicoDetailsActivity.ID, (int) id);
-                startActivity(intent);
-            }
-        });
-
 
         return view;
     }
@@ -92,28 +74,33 @@ public class FavouriteFragment extends Fragment implements SwipeRefreshLayout.On
         swipeRefreshLayout.setRefreshing(false);
     }
 
-    public void onClickRemoverPtFavoritos(View view) {
-
-    }
-
-    @Override
-    public void onRefreshListaPontosTuristicos(ArrayList<PontoTuristico> pontoTuristicos) {
-
-    }
-
     @Override
     public void onResume() {
         super.onResume();
-        SingletonGestorCultravel.getInstance(getContext()).setPontosTuristicosListener(this);
+        SingletonGestorCultravel.getInstance(getContext()).setFavoritosListener(this);
     }
 
     @Override
-    public void onRefreshDetalhes() {
+    public void onAddPTFavoritos() {
+
+    }
+
+    @Override
+    public void onRemoverPTFavoritos() {
+        SharedPreferences sharedPreferencesUser = getActivity().getSharedPreferences(MenuMainActivity.PREF_INFO_USER, Context.MODE_PRIVATE);
+        String token = sharedPreferencesUser.getString(MenuMainActivity.TOKEN, null);
+        SingletonGestorCultravel.getInstance(getContext()).getAllPontosTuristicosFavoritosAPI(getContext(), token);
+        swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void oncheckPtFavorito(Boolean favorito) {
 
     }
 
     @Override
     public void onRefreshListaFavoritosPontosTuristicos(ArrayList<PontoTuristico> listaFavoritos) {
+        Log.e("T L", listaFavoritos.size()+"");
         if (listaFavoritos != null) {
             lvListaFavoritos.setAdapter(new ListaFavoritoAdaptador(getContext(), listaFavoritos));
         }

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import helloworld.amsi.ipleiria.cultravel.R;
+import helloworld.amsi.ipleiria.cultravel.modelos.SingletonGestorCultravel;
 
 public class MenuMainActivity extends AppCompatActivity{
 
@@ -46,6 +47,7 @@ public class MenuMainActivity extends AppCompatActivity{
                         break;
                     case R.id.nav_favoritos:
                         if(token != null){
+                            SingletonGestorCultravel.getInstance(getApplicationContext()).getAllPontosTuristicosFavoritosAPI(getApplicationContext(), token);
                             fragment = new FavouriteFragment();
                             setTitle(item.getTitle());
                             break;
@@ -79,14 +81,9 @@ public class MenuMainActivity extends AppCompatActivity{
         });
         fragmentManager = getSupportFragmentManager();
 
-        /*carregarCabecalho();*/
         carregarFragmentoInicial();
 
     }
-
-   /* private void carregarCabecalho() {
-        View hView = navigationView.getHeaderView(0);
-    }*/
 
     private void carregarFragmentoInicial() {
             Fragment fragment = new SearchFragment();

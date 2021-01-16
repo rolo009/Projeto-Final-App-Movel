@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="visible"
     tools:context=".vistas.PontoTuristicoDetailsActivity">
 
     <LinearLayout
@@ -28,223 +29,209 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            android:paddingRight="15dp">
-
-            <TextView
-                android:id="@+id/tv_NomePT"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Castelo de Leiria"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/btnGoogleMaps"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/ic_go_google_maps"
-                android:backgroundTint="#FFFFFF"
-                android:onClick="onClickGoGoogleMaps"/>
-
-
-            <Button
-                android:id="@+id/btnAddFavoritos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/ic_add_favoritos"
-                android:backgroundTint="#FFFFFF"
-                android:onClick="onClickAddFavoritos"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="15dp">
-
-            <ImageView
-                android:id="@+id/ivImgPT"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_weight="1"
-                android:src="@drawable/castelo_de_leiria" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:paddingLeft="37dp"
-            android:paddingTop="20dp">
-
             <LinearLayout
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="10dp">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp">
 
                 <TextView
-                    android:id="@+id/textViewtipoMon"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_NomePT"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TIPO MONUMENTO"
-                    android:textColor="#FFFFFF" />
-
-                <TextView
-                    android:id="@+id/tv_tipoMonumento"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="7dp"
-                    android:layout_weight="1"
-                    android:text="Castelo"
+                    android:text="Castelo de Leiria"
                     android:textColor="#FFFFFF"
-                    android:textSize="11sp" />
+                    android:textSize="24sp" />
 
-                <TextView
-                    android:id="@+id/tvEC"
+                <Button
+                    android:id="@+id/btnGoogleMaps"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="ESTILO DE CONSTRUÇÃO"
-                    android:visibility="visible"
-                    android:textColor="#FFFFFF" />
-
-                <TextView
-                    android:id="@+id/tv_estiloConstrucao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="7dp"
-                    android:layout_weight="1"
-                    android:text="Castelo"
-                    android:textColor="#FFFFFF"
-                    android:textSize="11sp"
-                    android:visibility="visible" />
+                    android:background="@drawable/ic_go_google_maps"
+                    android:backgroundTint="#FFFFFF" />
 
 
-                <TextView
-                    android:id="@+id/tvAC"
+                <Button
+                    android:id="@+id/btnAddFavoritos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="ANO DE CONSTRUÇÃO"
-                    android:textColor="#FFFFFF" />
+                    android:background="@drawable/ic_add_favoritos"
+                    android:backgroundTint="#FFFFFF"
+                    android:visibility="invisible" />
 
-                <TextView
-                    android:id="@+id/tv_anoConstrucao"
+                <Button
+                    android:id="@+id/btnRemoverFavoritos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Castelo"
-                    android:textColor="#FFFFFF"
-                    android:textSize="11sp" />
+                    android:background="@drawable/ic_remove_favoritos"
+                    android:backgroundTint="#FFFFFF"
+                    android:visibility="gone" />
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textViewLocalidade"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="LOCALIDADE"
-                    android:textColor="#FFFFFF" />
-
-                <TextView
-                    android:id="@+id/tv_localidade"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="7dp"
-                    android:layout_weight="1"
-                    android:text="Castelo"
-                    android:textColor="#FFFFFF"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:id="@+id/textViewRating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="RATING"
-                    android:textColor="#FFFFFF" />
-
-                <TextView
-                    android:id="@+id/tv_rating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Castelo"
-                    android:textColor="#FFFFFF"
-                    android:textSize="11sp" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingLeft="40dp"
-            android:paddingTop="20dp"
-            android:paddingRight="40dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingTop="15dp">
 
-                <TextView
-                    android:id="@+id/textView7"
+                <ImageView
+                    android:id="@+id/ivImgPT"
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
+                    android:layout_height="200dp"
                     android:layout_weight="1"
-                    android:text="DESCRIÇÃO"
-                    android:textColor="#FFFFFF" />
+                    android:src="@drawable/castelo_de_leiria" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="37dp"
+                android:paddingTop="20dp">
 
-                <TextView
-                    android:id="@+id/tv_descricao"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Em Leiria"
-                    android:textColor="#FFFFFF"
-                    android:textSize="11sp" />
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp">
+
+                    <TextView
+                        android:id="@+id/textViewtipoMon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TIPO MONUMENTO"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/tv_tipoMonumento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="7dp"
+                        android:layout_weight="1"
+                        android:text="Castelo"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tvEC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="ESTILO DE CONSTRUÇÃO"
+                        android:textColor="#FFFFFF"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tv_estiloConstrucao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="7dp"
+                        android:layout_weight="1"
+                        android:text="Castelo"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:visibility="visible" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewLocalidade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="LOCALIDADE"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/tv_localidade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="7dp"
+                        android:layout_weight="1"
+                        android:text="Castelo"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tvAC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="ANO DE CONSTRUÇÃO"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/tv_anoConstrucao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Castelo"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+
             </LinearLayout>
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="40dp"
+                android:paddingTop="20dp"
+                android:paddingRight="40dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="DESCRIÇÃO"
+                        android:textColor="#FFFFFF" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_descricao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Em Leiria"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"></LinearLayout>
 
 </FrameLayout>

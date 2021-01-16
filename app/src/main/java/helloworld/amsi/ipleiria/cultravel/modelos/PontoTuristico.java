@@ -1,7 +1,7 @@
 package helloworld.amsi.ipleiria.cultravel.modelos;
 
 public class PontoTuristico {
-    private int id,status;
+    private int id, status;
     private String nome;
     private String anoConstrucao;
     private String descricao;
@@ -115,4 +115,5 @@ public class PontoTuristico {
     public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
+
 }

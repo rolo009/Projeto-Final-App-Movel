@@ -2,6 +2,7 @@ package helloworld.amsi.ipleiria.cultravel.vistas;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+
 import java.util.ArrayList;
 
 import helloworld.amsi.ipleiria.cultravel.R;
@@ -22,10 +31,11 @@ import helloworld.amsi.ipleiria.cultravel.listeners.SearchListener;
 import helloworld.amsi.ipleiria.cultravel.modelos.PontoTuristico;
 import helloworld.amsi.ipleiria.cultravel.modelos.SingletonGestorCultravel;
 
+import static android.content.ContentValues.TAG;
+
 public class ListaPontosTuristicosFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, PontosTuristicosListener, SearchListener {
 
     private ListView lvListaPT;
-    private ArrayList<PontoTuristico> pontosTuristicos;
     private SwipeRefreshLayout swipeRefreshLayout;
     private TextView tvResultadoProcura;
 
@@ -43,7 +53,6 @@ public class ListaPontosTuristicosFragment extends Fragment implements SwipeRefr
 
         SingletonGestorCultravel.getInstance(getContext()).setPontosTuristicosListener(this);
         SingletonGestorCultravel.getInstance(getContext()).setSearchListener(this);
-        /*SingletonGestorCultravel.getInstance(getContext()).getAllPontosTuristicosAPI(getContext());*/
 
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -56,14 +65,12 @@ public class ListaPontosTuristicosFragment extends Fragment implements SwipeRefr
                 startActivity(intent);
             }
         });
-
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
         SingletonGestorCultravel.getInstance(getContext()).setPontosTuristicosListener(this);
     }
 
@@ -82,11 +89,6 @@ public class ListaPontosTuristicosFragment extends Fragment implements SwipeRefr
 
     @Override
     public void onRefreshDetalhes() {
-
-    }
-
-    @Override
-    public void onRefreshListaFavoritosPontosTuristicos(ArrayList<PontoTuristico> pontoTuristicos) {
 
     }
 
