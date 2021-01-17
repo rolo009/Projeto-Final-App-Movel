@@ -122,7 +122,7 @@ public class UserProfileFragment extends Fragment implements UserListener {
     }
 
     @Override
-    public void onRefreshDetalhes() {
+    public void onRefreshDetalhes(String response) {
 
     }
 
@@ -135,6 +135,11 @@ public class UserProfileFragment extends Fragment implements UserListener {
 
     @Override
     public void onErroLogin() {
+
+    }
+
+    @Override
+    public void onLoadEditarRegisto(Utilizador utilizador) {
 
     }
 }

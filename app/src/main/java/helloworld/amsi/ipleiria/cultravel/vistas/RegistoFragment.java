@@ -303,7 +303,7 @@ public class RegistoFragment extends Fragment implements UserListener {
     }
 
     @Override
-    public void onRefreshDetalhes() {
+    public void onRefreshDetalhes(String response) {
 
     }
 
@@ -314,6 +314,11 @@ public class RegistoFragment extends Fragment implements UserListener {
 
     @Override
     public void onErroLogin() {
+
+    }
+
+    @Override
+    public void onLoadEditarRegisto(Utilizador utilizador) {
 
     }
 }

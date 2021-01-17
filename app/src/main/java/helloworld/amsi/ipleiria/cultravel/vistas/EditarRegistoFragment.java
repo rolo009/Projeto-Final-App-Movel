@@ -2,6 +2,8 @@ package helloworld.amsi.ipleiria.cultravel.vistas;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
@@ -36,7 +38,7 @@ import helloworld.amsi.ipleiria.cultravel.utils.GenericoParserJson;
 
 public class EditarRegistoFragment extends Fragment implements UserListener {
 
-    private EditText etPrimeiroNome, etUltimoNome, etDtaNascimento, etNomeUtilizador, etEmail, etPassword, etConfirmarPassword, etMorada, etDistrito, etLocalidade;
+    private EditText etPrimeiroNome, etUltimoNome, etDtaNascimento, etNomeUtilizador, etEmail, etPassword, etConfirmarPassword, etMorada, etDistrito, etLocalidade, etOldPassword;
     private RadioButton rbtnMasculino, rbtnFeminino;
     private FragmentManager fragmentManager;
     private Utilizador utilizador;
@@ -59,38 +61,24 @@ public class EditarRegistoFragment extends Fragment implements UserListener {
         final Calendar myCalendar = Calendar.getInstance();
 
         etPrimeiroNome = view.findViewById(R.id.etPrimeiroNome);
-        etPrimeiroNome.setText(utilizador.getPrimeiroNome());
-
         etUltimoNome = view.findViewById(R.id.etUltimoNome);
-        etUltimoNome.setText(utilizador.getUltimoNome());
-
         etDtaNascimento = view.findViewById(R.id.etDtaNascimento);
-        etDtaNascimento.setText(utilizador.getDtaNascimento());
-
         etNomeUtilizador = view.findViewById(R.id.etNomeUtilizador);
-        etNomeUtilizador.setText(utilizador.getUsername());
-
         etEmail = view.findViewById(R.id.etEmail);
-        etEmail.setText(utilizador.getUsername());
-
+        etOldPassword = view.findViewById(R.id.etOldPassword);
         etPassword = view.findViewById(R.id.etPassword);
-        etPassword.setText(utilizador.getPassword());
-
         etConfirmarPassword = view.findViewById(R.id.etConfirmarPassword);
-        etPassword.setText(utilizador.getPassword());
-
         etDistrito = view.findViewById(R.id.etDistrito);
-        etDistrito.setText(utilizador.getDistrito());
-
         etMorada = view.findViewById(R.id.etMorada);
-        etMorada.setText(utilizador.getMorada());
-
         etLocalidade = view.findViewById(R.id.etLocalidade);
-        etLocalidade.setText(utilizador.getLocalidade());
-
         rbtnMasculino = view.findViewById(R.id.rbtnMasculino);
         rbtnFeminino = view.findViewById(R.id.rbtnFeminino);
-        rbtnMasculino.setText(utilizador.getSexo());
+
+        SharedPreferences sharedPreferencesUser = getActivity().getSharedPreferences(MenuMainActivity.PREF_INFO_USER, Context.MODE_PRIVATE);
+        String token = sharedPreferencesUser.getString(MenuMainActivity.TOKEN, null);
+
+        SingletonGestorCultravel.getInstance(getContext()).getUserAPI(getContext(), token);
+
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -128,12 +116,13 @@ public class EditarRegistoFragment extends Fragment implements UserListener {
                     String dtaNascimento = etDtaNascimento.getText().toString();
                     String username = etNomeUtilizador.getText().toString();
                     String email = etEmail.getText().toString();
+                    String oldPassword = etOldPassword.getText().toString();
                     String password = etPassword.getText().toString();
                     String confirmPassword = etConfirmarPassword.getText().toString();
                     String localidade = etLocalidade.getText().toString();
                     String morada = etMorada.getText().toString();
                     String distrito = etDistrito.getText().toString();
-                    String sexo = "";
+                    String sexo = "Masculino";
 
                     if (rbtnMasculino.isChecked()) {
                         sexo = "Masculino";
@@ -166,19 +155,24 @@ public class EditarRegistoFragment extends Fragment implements UserListener {
                         return;
                     }
 
-                    if (!isPasswordValida(password)) {
-                        etPassword.setError("Palavra Passe Inválida, é necessário ter mais de 8 caractéres");
-                        return;
-                    }
+                    if (isOldPasswordValida(oldPassword)) {
+                        if (!isPasswordValida(password)) {
+                            etPassword.setError("Palavra Passe Inválida, é necessário ter mais de 8 caractéres");
+                            return;
+                        }
 
-                    if (!isConfirmPasswordValido(confirmPassword)) {
-                        etConfirmarPassword.setError("Palavra Passe Inválida, é necessário ter mais de 8 caractéres");
-                        return;
-                    }
+                        if (!isConfirmPasswordValido(confirmPassword)) {
+                            etConfirmarPassword.setError("Palavra Passe Inválida, é necessário ter mais de 8 caractéres");
+                            return;
+                        }
 
-                    if (!isEqualsPasswordValida(password, confirmPassword)) {
-                        etConfirmarPassword.setError("As Palavras Passe não coincidem");
-                        return;
+                        if (!isEqualsPasswordValida(password, confirmPassword)) {
+                            etConfirmarPassword.setError("As Palavras Passe não coincidem");
+                            return;
+                        }
+                    } else {
+                        oldPassword = null;
+                        password = null;
                     }
 
                     if (!isLocalidadeValida(localidade)) {
@@ -195,9 +189,14 @@ public class EditarRegistoFragment extends Fragment implements UserListener {
                         etDistrito.setError("Distrito inválido");
                         return;
                     }
-
-                    utilizador = new Utilizador(0, primeiroNome, ultimoNome, dtaNascimento, username, email, password, localidade, morada, distrito, sexo);
-                    SingletonGestorCultravel.getInstance(getContext()).registarUserAPI(utilizador, getContext());
+                    if (oldPassword != null) {
+                        utilizador = new Utilizador(0, primeiroNome, ultimoNome, dtaNascimento, username, email, password, localidade, morada, distrito, sexo);
+                    } else {
+                        utilizador = new Utilizador(0, primeiroNome, ultimoNome, dtaNascimento, username, email, null, localidade, morada, distrito, sexo);
+                    }
+                    SharedPreferences sharedPreferencesUser = getActivity().getSharedPreferences(MenuMainActivity.PREF_INFO_USER, Context.MODE_PRIVATE);
+                    String token = sharedPreferencesUser.getString(MenuMainActivity.TOKEN, null);
+                    SingletonGestorCultravel.getInstance(getContext()).editarUtilizadorAPI(utilizador, getContext(), oldPassword, token);
 
                 } else {
                     Toast.makeText(getContext(), "Sem ligação à Internet!", Toast.LENGTH_LONG).show();
@@ -248,6 +247,14 @@ public class EditarRegistoFragment extends Fragment implements UserListener {
 
     private boolean isEmailValido(String email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    private boolean isOldPasswordValida(String password) {
+        if (password == null) {
+            return true;
+        }
+        return password.length() > 8;
+
     }
 
     private boolean isPasswordValida(String password) {
@@ -324,8 +331,18 @@ public class EditarRegistoFragment extends Fragment implements UserListener {
     }
 
     @Override
-    public void onRefreshDetalhes() {
-
+    public void onRefreshDetalhes(String resposta) {
+        switch (resposta) {
+            case "0":
+                Log.e("eee", "1111");
+                etOldPassword.setError("A Palavra-Passe introduzida não corresponde a este utilizador!");
+                break;
+            case "true":
+                Fragment fragment = new UserProfileFragment();
+                fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).addToBackStack(null).commit();
+                Toast.makeText(getContext(), "A sua conta foi atualizada com sucesso!", Toast.LENGTH_LONG).show();
+                break;
+        }
     }
 
     @Override
@@ -336,5 +353,23 @@ public class EditarRegistoFragment extends Fragment implements UserListener {
     @Override
     public void onErroLogin() {
 
+    }
+
+    @Override
+    public void onLoadEditarRegisto(Utilizador utilizador) {
+        etPrimeiroNome.setText(utilizador.getPrimeiroNome());
+        etUltimoNome.setText(utilizador.getUltimoNome());
+        etDtaNascimento.setText(utilizador.getDtaNascimento());
+        etNomeUtilizador.setText(utilizador.getUsername());
+        etEmail.setText(utilizador.getEmail());
+        etDistrito.setText(utilizador.getDistrito());
+        etMorada.setText(utilizador.getMorada());
+        etLocalidade.setText(utilizador.getLocalidade());
+
+        if(utilizador.getSexo().equals("Masculino")){
+            rbtnMasculino.setChecked(true);
+        }else if (utilizador.getSexo().equals("Feminino")){
+            rbtnFeminino.setChecked(true);
+        }
     }
 }

@@ -43,16 +43,17 @@ public class UtilizadoresParserJson {
 
         try {
             JSONObject utilizador = new JSONObject(response);
-            int id = utilizador.getInt("id_pontoTuristico");
             String primeiroNome = utilizador.getString("primeiroNome");
             String ultimoNome = utilizador.getString("ultimoNome");
+            String username = utilizador.getString("username");
+            String email = utilizador.getString("email");
             String dtaNascimento = utilizador.getString("dtaNascimento");
             String morada = utilizador.getString("morada");
             String localidade = utilizador.getString("localidade");
             String distrito = utilizador.getString("distrito");
             String sexo = utilizador.getString("sexo");
 
-            auxUtilizador = new Utilizador(id, primeiroNome, ultimoNome, dtaNascimento,null, null, null, morada, localidade, distrito, sexo);
+            auxUtilizador = new Utilizador(0, primeiroNome, ultimoNome, dtaNascimento,username, email, null, morada, localidade, distrito, sexo);
         } catch (JSONException e) {
             e.printStackTrace();
         }

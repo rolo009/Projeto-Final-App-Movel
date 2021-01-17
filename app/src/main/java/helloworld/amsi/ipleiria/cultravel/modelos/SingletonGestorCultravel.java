@@ -35,6 +35,7 @@ public class SingletonGestorCultravel {
 
     private static SingletonGestorCultravel instance = null;
     private ArrayList<PontoTuristico> pontosTuristicos;
+    private Utilizador utilizadores;
     private PontosTuristicosFavoritosBDHelper pontosTuristicosFavoritosBD;
     private static RequestQueue volleyQueue = null; //static para ser fila unica
     private static final String mUrlAPISearchPontosTuristicos = "http://10.0.2.2:8888/pontosturisticos/search/";
@@ -44,12 +45,11 @@ public class SingletonGestorCultravel {
     private static final String mUrlAPIRemoverPontosTuristicosFavoritos = "http://10.0.2.2:8888/favoritos/remover";
     private static final String mUrlAPICheckFavoritos = "http://10.0.2.2:8888/favoritos/check";
 
-    private static final String mUrlAPISearchEmail = "http://10.0.2.2:8888/userprofile/email/";
     private static final String mUrlAPIUserLogin = "http://10.0.2.2:8888/userprofile/login";
     private static final String mUrlAPIRegistarUser = "http://10.0.2.2:8888/userprofile/registo";
     private static final String mUrlAPIEditarRegistoUser = "http://10.0.2.2:8888/userprofile/editar/";
     private static final String mUrlAPIApagarUser = "http://10.0.2.2:8888/userprofile/apagaruser/";
-    private static final String mUrlAPIUserInfo = "http://10.0.2.2:8888/userprofile/user/";
+    private static final String mUrlAPIUserInfo = "http://10.0.2.2:8888/userprofile/user";
 
     private static final String mUrlAPIContacto = "http://10.0.2.2:8888/contactos/registo";
     public PontosTuristicosListener pontosTuristicosListener;
@@ -305,9 +305,6 @@ public class SingletonGestorCultravel {
                     if (userListener != null) {
                         userListener.onUserRegistado(response);
                     }
-
-
-
             }
         }, new Response.ErrorListener() {
 
@@ -336,13 +333,37 @@ public class SingletonGestorCultravel {
         volleyQueue.add(req);
     }
 
-    public void editarUtilizadorAPI(final Utilizador utilizador, final Context context, final String token) {
-        StringRequest req = new StringRequest(Request.Method.PUT, mUrlAPISearchEmail + "/" + utilizador.getEmail(), new Response.Listener<String>() {
+    public void getUserAPI(final Context context, String token) {
+        if (!GenericoParserJson.isConnectionInternet(context)) {
+
+
+        } else {
+            StringRequest req = new StringRequest(Request.Method.GET, mUrlAPIUserInfo + "/" + token, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    utilizadores = UtilizadoresParserJson.parserJsonUtilizador(response);
+
+                    if (userListener != null)
+                        userListener.onLoadEditarRegisto(utilizadores);
+
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            volleyQueue.add(req);
+        }
+    }
+
+    public void editarUtilizadorAPI(final Utilizador utilizador, final Context context, final String oldPassword, final String token) {
+        StringRequest req = new StringRequest(Request.Method.PUT, mUrlAPIEditarRegistoUser, new Response.Listener<String>() {
 
             public void onResponse(String response) {
-
                 if (userListener != null) {
-                    userListener.onRefreshDetalhes();
+                    userListener.onRefreshDetalhes(response);
                 }
             }
         }, new Response.ErrorListener() {
@@ -363,7 +384,13 @@ public class SingletonGestorCultravel {
                 params.put("sexo", utilizador.getSexo());
                 params.put("username", utilizador.getUsername());
                 params.put("email", utilizador.getEmail());
-                params.put("password", utilizador.getPassword());
+                if(utilizador.getPassword() != null){
+                    params.put("password", utilizador.getPassword());
+                    params.put("oldPassword", oldPassword);
+                }else{
+                    params.put("password", "0");
+                    params.put("oldPassword", "0");
+                }
                 params.put("token", token);
                 return params;
             }

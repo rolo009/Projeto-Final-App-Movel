@@ -9,10 +9,11 @@ public interface UserListener {
 
     void onValidateLogin(String token, String email);
 
-    void onRefreshDetalhes();
+    void onRefreshDetalhes(String response);
 
     void onApagarConta();
 
     void onErroLogin();
 
+    void onLoadEditarRegisto(Utilizador utilizador);
 }

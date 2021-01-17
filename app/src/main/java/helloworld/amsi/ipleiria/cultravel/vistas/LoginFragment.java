@@ -20,6 +20,7 @@ import android.widget.Toast;
 import helloworld.amsi.ipleiria.cultravel.R;
 import helloworld.amsi.ipleiria.cultravel.listeners.UserListener;
 import helloworld.amsi.ipleiria.cultravel.modelos.SingletonGestorCultravel;
+import helloworld.amsi.ipleiria.cultravel.modelos.Utilizador;
 import helloworld.amsi.ipleiria.cultravel.utils.GenericoParserJson;
 
 /**
@@ -112,7 +113,7 @@ public class LoginFragment extends Fragment implements UserListener {
     }
 
     @Override
-    public void onRefreshDetalhes() {
+    public void onRefreshDetalhes(String response) {
 
     }
 
@@ -124,6 +125,11 @@ public class LoginFragment extends Fragment implements UserListener {
     @Override
     public void onErroLogin() {
         Toast.makeText(getContext(), "A sua conta não cumpre os requisitos para que seja possivel iniciar sessão! Para mais informações contacto o suporte.", Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onLoadEditarRegisto(Utilizador utilizador) {
 
     }
 
