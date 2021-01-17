@@ -89,6 +89,7 @@ public class ListaFavoritoAdaptador extends BaseAdapter {
         }
 
         public void update(PontoTuristico pontoTuristico) {
+            System.out.println(pontoTuristico.getNome());
             tvNomePT.setText(pontoTuristico.getNome());
             tvTipoMonumento.setText(pontoTuristico.getTipoMonumento());
             Glide.with(context)
