@@ -223,12 +223,12 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/btnLogin"
+                android:id="@+id/btn_editarRegisto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#C86D51"
-                android:text="@string/login"
+                android:text="@string/editar_registo"
                 android:textColor="#FFFFFF" />
 
             <Space

@@ -43,8 +43,18 @@ public class UserProfileFragment extends Fragment implements UserListener {
 
         SingletonGestorCultravel.getInstance(getContext()).setUserListener(this);
 
+        Button btnEditarRegisto = view.findViewById(R.id.btnEditarRegisto);
         Button btnLogout = view.findViewById(R.id.btn_terminarSessao);
         Button btn_apagarConta = view.findViewById(R.id.btn_apagarConta);
+
+        btnEditarRegisto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new EditarRegistoFragment();
+                fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).addToBackStack(null).commit();
+            }
+        });
+
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

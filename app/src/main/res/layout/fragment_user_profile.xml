@@ -60,13 +60,13 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btn_editarRegisto"
+                    android:id="@+id/btnEditarRegisto"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:background="#34FFFFFF"
-                    android:text="EDITAR REGISTO"
+                    android:text="@string/editar_registo"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp" />
             </LinearLayout>
