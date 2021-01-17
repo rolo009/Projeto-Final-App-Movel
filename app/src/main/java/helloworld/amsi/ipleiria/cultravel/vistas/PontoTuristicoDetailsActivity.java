@@ -144,14 +144,14 @@ public class PontoTuristicoDetailsActivity extends AppCompatActivity implements 
 
     @Override
     public void onAddPTFavoritos() {
-        Toast.makeText(getApplicationContext(), "Ponto Turistico Adicionado aos favoritos!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Ponto Turístico Adicionado aos favoritos!", Toast.LENGTH_SHORT).show();
         btnAddFavoritos.setVisibility(View.GONE);
         btnRemoverFavoritos.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onRemoverPTFavoritos() {
-        Toast.makeText(getApplicationContext(), "Ponto Turistico Removido dos favoritos!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Ponto Turístico Removido dos favoritos!", Toast.LENGTH_SHORT).show();
         btnAddFavoritos.setVisibility(View.VISIBLE);
         btnRemoverFavoritos.setVisibility(View.GONE);
     }

@@ -34,8 +34,7 @@ public class FavouriteFragment extends Fragment implements SwipeRefreshLayout.On
 
     private ListView lvListaFavoritos;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private ArrayList<PontoTuristico> listaFavoritos;
-    private PontoTuristico pontoTuristico;
+
 
 
 
@@ -53,6 +52,11 @@ public class FavouriteFragment extends Fragment implements SwipeRefreshLayout.On
 
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
+
+        SharedPreferences sharedPrefInfoUser = getActivity().getSharedPreferences(MenuMainActivity.PREF_INFO_USER, Context.MODE_PRIVATE);
+        String token = sharedPrefInfoUser.getString(MenuMainActivity.TOKEN, null);
+
+        SingletonGestorCultravel.getInstance(getContext()).getAllPontosTuristicosFavoritosAPI(getContext(), token);
 
         lvListaFavoritos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -100,7 +104,6 @@ public class FavouriteFragment extends Fragment implements SwipeRefreshLayout.On
 
     @Override
     public void onRefreshListaFavoritosPontosTuristicos(ArrayList<PontoTuristico> listaFavoritos) {
-        Log.e("T L", listaFavoritos.size()+"");
         if (listaFavoritos != null) {
             lvListaFavoritos.setAdapter(new ListaFavoritoAdaptador(getContext(), listaFavoritos));
         }

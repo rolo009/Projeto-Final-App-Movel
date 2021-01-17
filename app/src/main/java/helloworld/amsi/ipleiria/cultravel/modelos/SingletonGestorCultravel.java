@@ -13,15 +13,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import helloworld.amsi.ipleiria.cultravel.R;
 import helloworld.amsi.ipleiria.cultravel.listeners.ContactosListener;
 import helloworld.amsi.ipleiria.cultravel.listeners.FavoritosListener;
 import helloworld.amsi.ipleiria.cultravel.listeners.PontosTuristicosListener;
@@ -30,7 +26,6 @@ import helloworld.amsi.ipleiria.cultravel.listeners.UserListener;
 import helloworld.amsi.ipleiria.cultravel.utils.GenericoParserJson;
 import helloworld.amsi.ipleiria.cultravel.utils.PontoTuristicoParserJson;
 import helloworld.amsi.ipleiria.cultravel.utils.UtilizadoresParserJson;
-import helloworld.amsi.ipleiria.cultravel.vistas.ListaPontosTuristicosFragment;
 
 public class SingletonGestorCultravel {
 
@@ -40,24 +35,23 @@ public class SingletonGestorCultravel {
 
     private static SingletonGestorCultravel instance = null;
     private ArrayList<PontoTuristico> pontosTuristicos;
-    private Utilizador utilizadores;
     private PontosTuristicosFavoritosBDHelper pontosTuristicosFavoritosBD;
     private static RequestQueue volleyQueue = null; //static para ser fila unica
-    private static final String mUrlAPISearchPontosTuristicos = "http://10.0.2.2:8888/pontosturisticos/search/"; //API pontos turisticos
+    private static final String mUrlAPISearchPontosTuristicos = "http://10.0.2.2:8888/pontosturisticos/search/";
 
-    private static final String mUrlAPIPontosTuristicosFavoritos = "http://10.0.2.2:8888/favoritos/info/"; //API pontos turisticos
-    private static final String mUrlAPIAddPontosTuristicosFavoritos = "http://10.0.2.2:8888/favoritos/add/"; //API pontos turisticos
-    private static final String mUrlAPIRemoverPontosTuristicosFavoritos = "http://10.0.2.2:8888/favoritos/remover"; //API pontos turisticos
-    private static final String mUrlAPICheckFavoritos = "http://10.0.2.2:8888/favoritos/check"; //API pontos turisticos
+    private static final String mUrlAPIPontosTuristicosFavoritos = "http://10.0.2.2:8888/favoritos/info/";
+    private static final String mUrlAPIAddPontosTuristicosFavoritos = "http://10.0.2.2:8888/favoritos/add/";
+    private static final String mUrlAPIRemoverPontosTuristicosFavoritos = "http://10.0.2.2:8888/favoritos/remover";
+    private static final String mUrlAPICheckFavoritos = "http://10.0.2.2:8888/favoritos/check";
 
-    private static final String mUrlAPISearchEmail = "http://10.0.2.2:8888/userprofile/email/"; //API pontos turisticos
-    private static final String mUrlAPIUserLogin = "http://10.0.2.2:8888/userprofile/login"; //API pontos turisticos
-    private static final String mUrlAPIRegistarUser = "http://10.0.2.2:8888/userprofile/registo"; //API pontos turisticos
-    private static final String mUrlAPIEditarRegistoUser = "http://10.0.2.2:8888/userprofile/editar/"; //API pontos turisticos
-    private static final String mUrlAPIApagarUser = "http://10.0.2.2:8888/userprofile/apagaruser/"; //API pontos turisticos
-    private static final String mUrlAPIUserInfo = "http://10.0.2.2:8888/userprofile/user/"; //API pontos turisticos
+    private static final String mUrlAPISearchEmail = "http://10.0.2.2:8888/userprofile/email/";
+    private static final String mUrlAPIUserLogin = "http://10.0.2.2:8888/userprofile/login";
+    private static final String mUrlAPIRegistarUser = "http://10.0.2.2:8888/userprofile/registo";
+    private static final String mUrlAPIEditarRegistoUser = "http://10.0.2.2:8888/userprofile/editar/";
+    private static final String mUrlAPIApagarUser = "http://10.0.2.2:8888/userprofile/apagaruser/";
+    private static final String mUrlAPIUserInfo = "http://10.0.2.2:8888/userprofile/user/";
 
-    private static final String mUrlAPIContacto = "http://10.0.2.2:8888/contactos/registo"; //API pontos turisticos
+    private static final String mUrlAPIContacto = "http://10.0.2.2:8888/contactos/registo";
     public PontosTuristicosListener pontosTuristicosListener;
     public SearchListener searchListener;
     public UserListener userListener;
@@ -217,9 +211,9 @@ public class SingletonGestorCultravel {
 
         } else {
             StringRequest req = new StringRequest(Request.Method.POST, mUrlAPIAddPontosTuristicosFavoritos, new Response.Listener<String>() {
-
                 @Override
                 public void onResponse(String response) {
+                    adicionarPontoTuristicoFavoritoBD(pontoTuristico);
                     if (favoritosListener != null) {
                         favoritosListener.onAddPTFavoritos();
                     }
