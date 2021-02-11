@@ -35,9 +35,6 @@ public class FavouriteFragment extends Fragment implements SwipeRefreshLayout.On
     private ListView lvListaFavoritos;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-
-
-
     public FavouriteFragment() {
         // Required empty public constructor
     }

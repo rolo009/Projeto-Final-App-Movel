@@ -334,8 +334,13 @@ public class EditarRegistoFragment extends Fragment implements UserListener {
     public void onRefreshDetalhes(String resposta) {
         switch (resposta) {
             case "0":
-                Log.e("eee", "1111");
                 etOldPassword.setError("A Palavra-Passe introduzida não corresponde a este utilizador!");
+                break;
+            case "1":
+                etNomeUtilizador.setError("O nome de utilizador que introduziu já se encontra registado!");
+                break;
+            case "2":
+                etEmail.setError("O email que introduziu já se encontra registado!");
                 break;
             case "true":
                 Fragment fragment = new UserProfileFragment();

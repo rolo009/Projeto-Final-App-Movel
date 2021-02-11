@@ -283,7 +283,6 @@ public class RegistoFragment extends Fragment implements UserListener {
 
         switch (response) {
             case "0":
-                Log.e("eee", "1111");
                 etEmail.setError("Este email já se encontra registado!");
                 break;
             case "1":
