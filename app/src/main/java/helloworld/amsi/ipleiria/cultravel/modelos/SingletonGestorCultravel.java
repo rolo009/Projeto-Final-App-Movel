@@ -38,20 +38,20 @@ public class SingletonGestorCultravel {
     private Utilizador utilizadores;
     private PontosTuristicosFavoritosBDHelper pontosTuristicosFavoritosBD;
     private static RequestQueue volleyQueue = null; //static para ser fila unica
-    private static final String mUrlAPISearchPontosTuristicos = "http://10.0.2.2:8888/pontosturisticos/search/";
+    private static final String mUrlAPISearchPontosTuristicos = "http://10.0.2.2:9515/v1/pontosturisticos/search/";
 
-    private static final String mUrlAPIPontosTuristicosFavoritos = "http://10.0.2.2:8888/favoritos/info/";
-    private static final String mUrlAPIAddPontosTuristicosFavoritos = "http://10.0.2.2:8888/favoritos/add/";
-    private static final String mUrlAPIRemoverPontosTuristicosFavoritos = "http://10.0.2.2:8888/favoritos/remover";
-    private static final String mUrlAPICheckFavoritos = "http://10.0.2.2:8888/favoritos/check";
+    private static final String mUrlAPIPontosTuristicosFavoritos = "http://10.0.2.2:9515/v1/favoritos/info/";
+    private static final String mUrlAPIAddPontosTuristicosFavoritos = "http://10.0.2.2:9515/v1/favoritos/add/";
+    private static final String mUrlAPIRemoverPontosTuristicosFavoritos = "http://10.0.2.2:9515/v1/favoritos/remover";
+    private static final String mUrlAPICheckFavoritos = "http://10.0.2.2:9515/v1/favoritos/check";
 
-    private static final String mUrlAPIUserLogin = "http://10.0.2.2:8888/userprofile/login";
-    private static final String mUrlAPIRegistarUser = "http://10.0.2.2:8888/userprofile/registo";
-    private static final String mUrlAPIEditarRegistoUser = "http://10.0.2.2:8888/userprofile/editar/";
-    private static final String mUrlAPIApagarUser = "http://10.0.2.2:8888/userprofile/apagaruser/";
-    private static final String mUrlAPIUserInfo = "http://10.0.2.2:8888/userprofile/user";
+    private static final String mUrlAPIUserLogin = "http://10.0.2.2:9515/v1/userprofile/login";
+    private static final String mUrlAPIRegistarUser = "http://10.0.2.2:9515/v1/userprofile/registo";
+    private static final String mUrlAPIEditarRegistoUser = "http://10.0.2.2:9515/v1/userprofile/editar/";
+    private static final String mUrlAPIApagarUser = "http://10.0.2.2:9515/v1/userprofile/apagaruser/";
+    private static final String mUrlAPIUserInfo = "http://10.0.2.2:9515/v1/userprofile/user";
 
-    private static final String mUrlAPIContacto = "http://10.0.2.2:8888/contactos/registo";
+    private static final String mUrlAPIContacto = "http://10.0.2.2:9515/v1/contactos/registo";
     public PontosTuristicosListener pontosTuristicosListener;
     public SearchListener searchListener;
     public UserListener userListener;
@@ -424,6 +424,7 @@ public class SingletonGestorCultravel {
                 return params;
             }
         };
+        Log.e("12", req.toString());
         volleyQueue.add(req);
     }
 
