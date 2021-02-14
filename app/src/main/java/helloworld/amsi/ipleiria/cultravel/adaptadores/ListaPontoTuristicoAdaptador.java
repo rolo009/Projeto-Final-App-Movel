@@ -84,7 +84,7 @@ public class ListaPontoTuristicoAdaptador extends BaseAdapter {
             tvDescricao.setText(pontoTuristico.getDescricao());
             Glide.with(context)
                     .load(pontoTuristico.getFoto())
-                    .placeholder(R.drawable.castelo_de_leiria)
+                    .placeholder(R.drawable.no_image)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imgFotoPT);
         }

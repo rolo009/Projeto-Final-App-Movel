@@ -94,7 +94,7 @@ public class ListaFavoritoAdaptador extends BaseAdapter {
             tvTipoMonumento.setText(pontoTuristico.getTipoMonumento());
             Glide.with(context)
                     .load(pontoTuristico.getFoto())
-                    .placeholder(R.drawable.castelo_de_leiria)
+                    .placeholder(R.drawable.no_image)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imgFotoPT);
         }

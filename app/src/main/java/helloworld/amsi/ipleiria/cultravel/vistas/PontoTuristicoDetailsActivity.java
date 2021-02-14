@@ -39,6 +39,7 @@ public class PontoTuristicoDetailsActivity extends AppCompatActivity implements 
     private Button btnAddFavoritos, btnRemoverFavoritos, btnGoogleMaps;
 
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ponto_turistico_details);
@@ -69,6 +70,7 @@ public class PontoTuristicoDetailsActivity extends AppCompatActivity implements 
         tv_localidade = findViewById(R.id.tv_localidade);
         tv_descricao = findViewById(R.id.tv_descricao);
         ivImgPT = findViewById(R.id.ivImgPT);
+
 
         btnGoogleMaps.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,7 +139,7 @@ public class PontoTuristicoDetailsActivity extends AppCompatActivity implements 
         }
         Glide.with(this)
                 .load(pontoTuristico.getFoto())
-                .placeholder(R.drawable.castelo_de_leiria)
+                .placeholder(R.drawable.no_image)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(ivImgPT);
     }
