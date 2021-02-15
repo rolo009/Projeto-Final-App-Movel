@@ -198,6 +198,9 @@ public class SingletonGestorCultravel {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    if (favoritosListener != null) {
+                        favoritosListener.onNoFavoritos();
+                    }
                     Toast.makeText(context, "Não tem nenhum Ponto Turistico adicionado aos favoritos!", Toast.LENGTH_SHORT).show();
                 }
             });

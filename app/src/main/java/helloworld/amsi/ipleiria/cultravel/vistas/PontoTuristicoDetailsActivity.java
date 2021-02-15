@@ -173,4 +173,10 @@ public class PontoTuristicoDetailsActivity extends AppCompatActivity implements 
     public void onRefreshListaFavoritosPontosTuristicos(ArrayList<PontoTuristico> pontoTuristicos) {
 
     }
+
+    @Override
+    public void onNoFavoritos() {
+
+    }
+
 }

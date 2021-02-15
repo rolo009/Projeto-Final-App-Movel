@@ -6,13 +6,15 @@ import helloworld.amsi.ipleiria.cultravel.modelos.PontoTuristico;
 
 public interface FavoritosListener {
 
-    public void onAddPTFavoritos();
+    void onAddPTFavoritos();
 
-    public void onRemoverPTFavoritos();
+    void onRemoverPTFavoritos();
 
-    public void oncheckPtFavorito(Boolean favorito);
+    void oncheckPtFavorito(Boolean favorito);
 
-    public void onRefreshListaFavoritosPontosTuristicos(ArrayList<PontoTuristico> pontoTuristicos);
+    void onRefreshListaFavoritosPontosTuristicos(ArrayList<PontoTuristico> pontoTuristicos);
+
+    void onNoFavoritos();
 
 
 }

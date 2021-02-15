@@ -19,7 +19,7 @@ import helloworld.amsi.ipleiria.cultravel.R;
 import helloworld.amsi.ipleiria.cultravel.modelos.SingletonGestorCultravel;
 import helloworld.amsi.ipleiria.cultravel.utils.GenericoParserJson;
 
-public class MenuMainActivity extends AppCompatActivity {
+public class MenuMainActivity extends AppCompatActivity  {
 
     public static final String EMAIL = "EMAIL";
     public static final String TOKEN = "TOKEN";
@@ -27,7 +27,6 @@ public class MenuMainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     public static final String PREF_INFO_USER = "PREF_INFO_USER";
     private String token;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

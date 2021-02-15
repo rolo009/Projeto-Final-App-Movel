@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -34,6 +35,7 @@ public class FavouriteFragment extends Fragment implements SwipeRefreshLayout.On
 
     private ListView lvListaFavoritos;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private FragmentManager fragmentManager;
 
     public FavouriteFragment() {
         // Required empty public constructor
@@ -42,6 +44,7 @@ public class FavouriteFragment extends Fragment implements SwipeRefreshLayout.On
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_favourite, container, false);
+        fragmentManager = getFragmentManager();
 
         lvListaFavoritos = view.findViewById(R.id.lvListaFavoritos);
 
@@ -104,5 +107,11 @@ public class FavouriteFragment extends Fragment implements SwipeRefreshLayout.On
         if (listaFavoritos != null) {
             lvListaFavoritos.setAdapter(new ListaFavoritoAdaptador(getContext(), listaFavoritos));
         }
+    }
+
+    @Override
+    public void onNoFavoritos() {
+        Fragment fragment = new SearchFragment();
+        fragmentManager.beginTransaction().add(R.id.contentFragment, fragment).addToBackStack(null).commit();
     }
 }
